@@ -3,7 +3,11 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'therubyracer'
+gem 'koala'
+
+group :production do
+  gem 'therubyracer'
+end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
