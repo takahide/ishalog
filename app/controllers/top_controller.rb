@@ -14,6 +14,7 @@ class TopController < ApplicationController
     else 
       @token = nil
       @friends = []
+      @recommendations = []
     end
   end
 
