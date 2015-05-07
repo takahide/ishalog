@@ -1,2 +1,47 @@
-<%= image_tag @token %>
-<%= link_to "Facebookログイン", user_omniauth_authorize_path(:facebook) %>
+<div class="panel-overlay"></div>
+
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-left panel-reveal">
+  <div class="content-block">
+    <ul class="menu">
+      <li id="1" class="open-popup border">メニュー</li>
+      <li id="2" class="open-popup border">メニュー</li>
+    </ul>
+  </div>
+</div>
+
+<div class="views">
+  <div class="view view-main">
+    <div class="page-content">
+      <div class="content-block open-panel">
+        <%= image_tag @picture %>
+        <%= link_to "Facebookログイン", user_omniauth_authorize_path(:facebook) %>
+        <p><a href="/recommend">オススメを入力</a></p>
+
+        <p>利用している友達</p>
+        <% @friends.each do |f| %>
+          <p><%= f %></p>
+        <% end %>
+        <p>友達の医者</p>
+        <table>
+          <tr>
+          <td>医者名</td>
+          <td>場所</td>
+          <td>評価</td>
+          <td>科</td>
+          <td>コメント</td>
+          </tr>
+        <% @recommendations.each do |r| %>
+          <tr>
+          <td><%= r.doctor %></td>
+          <td><%= r.location %></td>
+          <td><%= r.rating %></td>
+          <td><%= r.department %></td>
+          <td><%= r.comment %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ Ishalog::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get '/', to: 'top#index'
+  get '/recommend', to: 'recommendations#index'
+  get '/recommend/:doctor/:location/:rating/:department/:comment', to: 'recommendations#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

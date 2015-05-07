@@ -4,10 +4,10 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
-gem 'pg'
 
 group :production do
   gem 'therubyracer'
+  gem 'pg'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
