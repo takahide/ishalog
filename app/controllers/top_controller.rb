@@ -12,10 +12,11 @@ class TopController < ApplicationController
         @recommendations = Recommendation.where uid: friend['id']
       end
     else 
-      @token = nil
-      @friends = []
-      @recommendations = []
+      redirect_to "/login"
     end
   end
 
+  def login
+
+  end
 end

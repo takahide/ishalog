@@ -15,14 +15,13 @@
     <div class="page-content">
       <div class="content-block open-panel">
         <%= image_tag @picture %>
-        <%= link_to "Facebookログイン", user_omniauth_authorize_path(:facebook) %>
         <p><a href="/recommend">オススメを入力</a></p>
 
         <p>利用している友達</p>
         <% @friends.each do |f| %>
           <p><%= f %></p>
         <% end %>
-        <p>友達の医者</p>
+        <p>友達のオススメ</p>
         <table>
           <tr>
           <td>医者名</td>
