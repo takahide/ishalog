@@ -6,4 +6,93 @@
   padding: 10px;
   text-align: center;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.top-button {
+  background: #f88;
+  color: #fff;
+  width: 100%;
+  margin: 20px auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: 170%;
+  padding: 10px 20px;
+}
+
+.popup-title {
+  margin: 0 15px 20px;
+  padding-top: 20px;
+}
+
+.ast {
+  color: #a00;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.comment {
+  max-width: 100%;
+}
+
+.list-block .item-inner-last:after {
+  background: #fff;
+}
+
+.list-block ul:after {
+  background: #fff;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.panel-left {
+  background: #f88;
+  .menu {
+    li {
+      background: #f88;
+      color: #fff;
+      padding: 20px;
+      border-bottom: solid 1px #fff;
+      font-size: 80%;
+      cursor: pointer;
+    }
+  }
+}
+
+.list-block ul:before {
+  background: #fff;
+}
+
+.list-block ul:after {
+  background: rgba(0, 0, 0, 0);
+}
+
+.content-block {
+  width: 90%;
+  margin: 90px auto;
+}
+
+.navbar {
+  height: 70px;
+}
+
+.fb-picture {
+  margin-top: 3px;
+  border-radius: 25px;
+}
+
+.top-title {
+  font-size: 110%;
 }

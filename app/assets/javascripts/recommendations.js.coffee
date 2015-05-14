@@ -2,15 +2,41 @@ $ ->
   $(".submit").on "click", ->
     doctor = $(".doctor").val()
     location = $(".location").val()
-    rating = $(".rating").val()
-    department = $(".department").val()
     comment = $(".comment").val()
+    department = 100
+    
+    for i, d of departments
+      if $(".department").val() == d
+        department = i
+        break
+
+    if doctor is ""
+      myApp.alert('病院名は必須です。', 'エラー')
+      return
+    if location is ""
+      myApp.alert('最寄り駅は必須です。', 'エラー')
+      return
+    if comment is ""
+      comment = "コメントなし"
+
 
     myApp.showPreloader '通信中...'
     $.ajax {
-      url: "/recommend/#{doctor}/#{location}/#{rating}/#{department}/#{comment}"
+      type: "POST"
+      url: "/recommend"
+      data: {
+        doctor: doctor
+        location: location
+        department: department
+        comment: comment
+        rating: 3
+      }
       cache: false
       success: (html) ->
         myApp.hidePreloader()
-        alert "ok"
+        myApp.alert('ご協力ありがとうございました。', '送信完了')
+      error: (XMLHttpRequest, textStatus, errorThrown) ->
+        myApp.hidePreloader()
+        myApp.alert('申し訳ありません。しばらく経ってから、再度お試しください。', 'エラー')
+
     }

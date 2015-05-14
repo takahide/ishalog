@@ -1,45 +1,96 @@
+<div class="popup popup-about">
+  <div class="close-button close-popup">
+    ×
+  </div>
+  <div class="list-block">
+    <p class="popup-title">あなたのオススメの（行きつけの）病院を教えてください（<span class="ast">*</span>は必須）</p>
+    <ul class="popup-list">
+      <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">科目<span class="ast">*</span></div>
+          <div class="item-input">
+            <input type="text" placeholder="タップして選択" readonly id="picker-device" class="department pointer">
+          </div>
+        </div>
+      </div>
+      </li>
+      <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">病院名<span class="ast">*</span></div>
+          <div class="item-input">
+            <input class="doctor" type="text" placeholder="例) あいうえお眼科">
+          </div>
+        </div>
+      </div>
+      </li>
+      <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">最寄駅<span class="ast">*</span></div>
+          <div class="item-input">
+            <input class="location" type="text" placeholder="例) 渋谷">
+          </div>
+        </div>
+      </div>
+      </li>
+      <li>
+      <div class="item-content">
+        <div class="item-inner item-inner-last">
+          <div class="item-title label">コメント</div>
+          <div class="item-input">
+            <textarea class="comment" placeholder="例) 丁寧に話を聞いてくれました。" col="100"></textarea>
+          </div>
+        </div>
+      </div>
+      </li>
+      <p class="my-button submit">送信</p>
+    </ul>
+  </div>
+</div>
+
 <div class="panel-overlay"></div>
 
 <!-- Left Panel with Reveal effect -->
 <div class="panel panel-left panel-reveal">
-  <div class="content-block">
+  <div class="list-block">
     <ul class="menu">
-      <li id="1" class="open-popup border">メニュー</li>
-      <li id="2" class="open-popup border">メニュー</li>
+      <% @my_recommendations.each do |r| %>
+        <li id="rec<%= r.id %>" class="open-popup border"><%= r.doctor %></li>
+      <% end %>
     </ul>
   </div>
 </div>
 
 <div class="views">
-  <div class="view view-main">
-    <div class="page-content">
-      <div class="content-block open-panel">
-        <%= image_tag @picture %>
-        <p><a href="/recommend">オススメを入力</a></p>
+  <div class="view view-main" style="background: #fff;">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left open-panel">
+          <p class="link open-panel">　</p>
+        </div>
 
-        <p>利用している友達</p>
-        <% @friends.each do |f| %>
-          <p><%= f %></p>
+        <div class="center sliding logo">ホスホス</div>
+        <div class="right sliding">
+          <%= image_tag @picture, class: "fb-picture" %>
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="content-block">
+        <p class=" open-popup top-button">オススメを入力</p>
+        <p class=" open-panel top-button">自分の入力情報を編集</p>
+
+        <% if @friends.nil? %>
+
+        <% else %>
+          <p class="top-title">利用している友達</p>
+          <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
+          <% @friends.each do |f| %>
+            <span class=""><%= f %>　</span>
+          <% end %>
         <% end %>
-        <p>友達のオススメ</p>
-        <table>
-          <tr>
-          <td>医者名</td>
-          <td>場所</td>
-          <td>評価</td>
-          <td>科</td>
-          <td>コメント</td>
-          </tr>
-        <% @recommendations.each do |r| %>
-          <tr>
-          <td><%= r.doctor %></td>
-          <td><%= r.location %></td>
-          <td><%= r.rating %></td>
-          <td><%= r.department %></td>
-          <td><%= r.comment %></td>
-          </tr>
-        <% end %>
-        </table>
       </div>
     </div>
   </div>

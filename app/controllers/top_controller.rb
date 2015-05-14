@@ -9,8 +9,8 @@ class TopController < ApplicationController
       @friends = []
       friends.each do |friend|
         @friends.push friend['name']
-        @recommendations = Recommendation.where uid: friend['id']
       end
+      @my_recommendations = Recommendation.where uid: @uid
     else 
       redirect_to "/login"
     end
