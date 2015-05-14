@@ -11,7 +11,8 @@ var $$ = Framework7.$;
 
 var pickerDevice = myApp.picker({
   input: '#picker-device',
-    cols: [
+  rotateEffect: true,
+  cols: [
 {
   textAlign: 'center',
     values: departments

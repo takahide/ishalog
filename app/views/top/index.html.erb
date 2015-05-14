@@ -10,6 +10,28 @@
         <div class="item-inner">
           <div class="item-title label">科目<span class="ast">*</span></div>
           <div class="item-input">
+            <select>
+              <option>内科</option>
+              <option>歯科</option>
+              <option>眼科</option>
+              <option>耳鼻科</option>
+              <option>皮膚科</option>
+              <option>形成外科</option>
+              <option>整形外科</option>
+              <option>泌尿器科</option>
+              <option>小児科</option>
+              <option>産婦人科</option>
+              <option>精神科</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      </li>
+      <li>
+      <div class="item-content">
+        <div class="item-inner">
+          <div class="item-title label">科目<span class="ast">*</span></div>
+          <div class="item-input">
             <input type="text" placeholder="タップして選択" readonly id="picker-device" class="department pointer">
           </div>
         </div>
@@ -87,6 +109,7 @@
         <% else %>
           <p class="top-title">利用している友達</p>
           <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
+          <p>※シェアしないでください。</p>
           <% @friends.each do |f| %>
             <span class=""><%= f %>　</span>
           <% end %>
