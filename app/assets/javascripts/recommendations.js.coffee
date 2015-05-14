@@ -1,14 +1,9 @@
 $ ->
   $(".submit").on "click", ->
+    department = $(".department").val()
     doctor = $(".doctor").val()
     location = $(".location").val()
     comment = $(".comment").val()
-    department = 100
-    
-    for i, d of departments
-      if $(".department").val() == d
-        department = i
-        break
 
     if doctor is ""
       myApp.alert('病院名は必須です。', 'エラー')

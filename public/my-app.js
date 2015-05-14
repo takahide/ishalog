@@ -1,5 +1,3 @@
-var departments = ['内科', '歯科', '眼科', '耳鼻科', '皮膚科', '形成外科', '整形外科', '泌尿器科', '小児科', '産婦人科', '精神科'];
-
 // Initialize your app
 var myApp = new Framework7({
     ajaxLinks: "a.ajax",
@@ -8,18 +6,6 @@ var myApp = new Framework7({
 
 // Export selectors engine
 var $$ = Framework7.$;
-
-var pickerDevice = myApp.picker({
-  input: '#picker-device',
-  rotateEffect: true,
-  cols: [
-{
-  textAlign: 'center',
-    values: departments
-}
-]
-});
-
 
 // Add view
 var mainView = myApp.addView('.view-main', {
