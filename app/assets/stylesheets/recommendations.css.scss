@@ -1,7 +1,19 @@
+.fb-button {
+  background: #3B5998;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  a {
+    color: #fff;
+  }
+}
+
 .my-button {
   background: #0a0;
   color: #fff;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
   padding: 10px;
   text-align: center;

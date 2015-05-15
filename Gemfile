@@ -4,6 +4,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'annotate'
 
 group :production do
   gem 'therubyracer'

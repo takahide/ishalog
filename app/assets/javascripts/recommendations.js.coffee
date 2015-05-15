@@ -6,12 +6,22 @@ $ ->
     comment = $(@).attr("comment")
     doctor = $(@).text()
 
+    $(".rec-id").val(id)
     $(".location").val(location)
     $(".department").val(department)
     $(".comment").val(comment)
     $(".doctor").val(doctor)
 
+  $(document).on "click", ".new-recommendation", ->
+
+    $(".rec-id").val("new")
+    $(".location").val("")
+    $(".department").val("1")
+    $(".comment").val("")
+    $(".doctor").val("")
+
   $(".submit").on "click", ->
+    id = $(".rec-id").val()
     department = $(".department").val()
     doctor = $(".doctor").val()
     location = $(".location").val()
@@ -32,6 +42,7 @@ $ ->
       type: "POST"
       url: "/recommend"
       data: {
+        id: id
         doctor: doctor
         location: location
         department: department
@@ -43,7 +54,8 @@ $ ->
         myApp.hidePreloader()
         myApp.alert('ご協力ありがとうございました。', '送信完了', ->
           myApp.closeModal()
-          $("ul.menu").append('<li id="' + json.id + '" class="open-popup border my-recommendation" department="' + json.department + '" location="' + json.location + '" comment="' + json.comment + '">' + json.doctor + '</li>')
+          $("ul.menu li#" + json.id).css("display", "none")
+          $("ul.menu").prepend('<li id="' + json.id + '" class="open-popup border my-recommendation" department="' + json.department + '" location="' + json.location + '" comment="' + json.comment + '">' + json.doctor + '</li>')
         )
       error: (XMLHttpRequest, textStatus, errorThrown) ->
         myApp.hidePreloader()

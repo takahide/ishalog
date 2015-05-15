@@ -3,8 +3,11 @@
     ×
   </div>
   <div class="list-block">
-    <p class="popup-title">あなたのオススメの（行きつけの）病院を教えてください（<span class="ast">*</span>は必須）</p>
+    <p class="popup-title">あなたのオススメの（行きつけの）病院を教えてください（後から何度でも編集できます。<span class="ast">*</span>は必須）</p>
     <ul class="popup-list">
+      <li style="display: none;">
+      <input class="rec-id" type="text">
+      </li>
       <li>
       <div class="item-content">
         <div class="item-inner">
@@ -69,7 +72,7 @@
   <div class="list-block">
     <ul class="menu">
       <% @my_recommendations.each do |r| %>
-        <li id="<%= r.id %>" class="open-popup border my-recommendation" department="<%= r.department %>" location="<%= r.location %>" comment="<%= r.comment %>"><%= r.doctor %></li>
+        <li id="<%= r.id.to_s.html_safe %>" class="open-popup border my-recommendation" department="<%= r.department.to_s.html_safe %>" location="<%= r.location.html_safe %>" comment="<%= r.comment.html_safe %>"><%= r.doctor.html_safe %></li>
       <% end %>
     </ul>
   </div>
@@ -83,7 +86,7 @@
           <p class="link open-panel">　</p>
         </div>
 
-        <div class="center sliding logo">ホスホス</div>
+        <div class="center sliding logo">ISHALAN</div>
         <div class="right sliding">
           <%= image_tag @picture, class: "fb-picture" %>
         </div>
@@ -91,7 +94,7 @@
     </div>
     <div class="page-content">
       <div class="content-block">
-        <p class=" open-popup top-button">オススメを入力</p>
+        <p class=" open-popup top-button new-recommendation">オススメを入力</p>
         <p class=" open-panel top-button">自分の入力情報を編集</p>
 
         <% if @friends.nil? %>
@@ -99,9 +102,9 @@
         <% else %>
           <p class="top-title">利用している友達</p>
           <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
-          <p>※シェアしないでください。</p>
+          <p>※まだリリース前のため、このページはSNS等でシェアしないでください。</p>
           <% @friends.each do |f| %>
-            <span class=""><%= f %>　</span>
+            <span class=""><%= f.html_safe %>　</span>
           <% end %>
         <% end %>
       </div>

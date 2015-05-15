@@ -1,20 +1,13 @@
 <div class="panel-overlay"></div>
 
-<!-- Left Panel with Reveal effect -->
-<div class="panel panel-left panel-reveal">
-  <div class="content-block">
-    <ul class="menu">
-      <li id="1" class="open-popup border">メニュー</li>
-      <li id="2" class="open-popup border">メニュー</li>
-    </ul>
-  </div>
-</div>
-
 <div class="views">
   <div class="view view-main">
     <div class="page-content">
-      <div class="content-block open-panel">
-        <%= link_to "Facebookログイン", user_omniauth_authorize_path(:facebook) %>
+      <div class="content-block">
+        <div style="width: 80%; margin: 0 auto;">
+          <p class="fb-button"><%= link_to "Facebookログイン", user_omniauth_authorize_path(:facebook) %></p>
+        <p>※これは、アプリにFacebookでの投稿を許可するものではありませんので、無断でFacebookに投稿されることはありません。</p>
+        </div>
       </div>
     </div>
   </div>

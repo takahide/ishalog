@@ -10,7 +10,7 @@ class TopController < ApplicationController
       friends.each do |friend|
         @friends.push friend['name']
       end
-      @my_recommendations = Recommendation.where uid: @uid
+      @my_recommendations = Recommendation.where(uid: @uid).order(updated_at: :desc).limit(100)
     else 
       redirect_to "/login"
     end
