@@ -1,6 +1,7 @@
 $ ->
   $(document).on "click", ".my-recommendation", ->
 
+    $(".submit").text("編集を保存")
     $(".delete").css("display", "block")
 
     id = $(@).attr("id")
@@ -17,6 +18,7 @@ $ ->
 
   $(document).on "click", ".new-recommendation", ->
 
+    $(".submit").text("送信")
     $(".delete").css("display", "none")
 
     $(".rec-id").val("new")
