@@ -1,5 +1,8 @@
 $ ->
   $(document).on "click", ".my-recommendation", ->
+
+    $(".delete").css("display", "block")
+
     id = $(@).attr("id")
     department = $(@).attr("department")
     location = $(@).attr("location")
@@ -14,13 +17,15 @@ $ ->
 
   $(document).on "click", ".new-recommendation", ->
 
+    $(".delete").css("display", "none")
+
     $(".rec-id").val("new")
     $(".location").val("")
     $(".department").val("1")
     $(".comment").val("")
     $(".doctor").val("")
 
-  $(".submit").on "click", ->
+  $(document).on "click", ".submit", ->
     id = $(".rec-id").val()
     department = $(".department").val()
     doctor = $(".doctor").val()
@@ -60,5 +65,35 @@ $ ->
       error: (XMLHttpRequest, textStatus, errorThrown) ->
         myApp.hidePreloader()
         myApp.alert('申し訳ありません。しばらく経ってから、再度お試しください。', 'エラー')
+    }
 
+  $(document).on "click", ".delete", ->
+    id = $(".rec-id").val()
+    department = 0
+    doctor = $(".doctor").val()
+    location = $(".location").val()
+    comment = $(".comment").val()
+
+    myApp.showPreloader '通信中...'
+    $.ajax {
+      type: "POST"
+      url: "/recommend"
+      data: {
+        id: id
+        doctor: doctor
+        location: location
+        department: department
+        comment: comment
+        rating: 3
+      }
+      cache: false
+      success: (json) ->
+        myApp.hidePreloader()
+        myApp.alert('削除しました。', '削除完了', ->
+          myApp.closeModal()
+          $("ul.menu li#" + json.id).css("display", "none")
+        )
+      error: (XMLHttpRequest, textStatus, errorThrown) ->
+        myApp.hidePreloader()
+        myApp.alert('申し訳ありません。しばらく経ってから、再度お試しください。', 'エラー')
     }

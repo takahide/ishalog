@@ -9,14 +9,19 @@
 }
 
 .my-button {
-  background: #0a0;
   color: #fff;
   width: 80%;
-  margin: 0 auto;
+  margin: 15px auto;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
+  &.green {
+    background: #0a0;
+  }
+  &.red {
+    background: #a44;
+  }
 }
 
 .top-button {

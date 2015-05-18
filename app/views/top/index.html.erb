@@ -60,7 +60,8 @@
         </div>
       </div>
       </li>
-      <p class="my-button submit">送信</p>
+      <p class="my-button green submit">送信</p>
+      <p class="my-button red delete">このオススメを削除</p>
     </ul>
   </div>
 </div>
@@ -72,7 +73,9 @@
   <div class="list-block">
     <ul class="menu">
       <% @my_recommendations.each do |r| %>
-        <li id="<%= r.id.to_s.html_safe %>" class="open-popup border my-recommendation" department="<%= r.department.to_s.html_safe %>" location="<%= r.location.html_safe %>" comment="<%= r.comment.html_safe %>"><%= r.doctor.html_safe %></li>
+        <% if r.department != 0 %>
+          <li id="<%= r.id.to_s.html_safe %>" class="open-popup border my-recommendation" department="<%= r.department.to_s.html_safe %>" location="<%= r.location.html_safe %>" comment="<%= r.comment.html_safe %>"><%= r.doctor.html_safe %></li>
+        <% end %>
       <% end %>
     </ul>
   </div>
