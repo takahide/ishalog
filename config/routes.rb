@@ -5,6 +5,7 @@ Ishalog::Application.routes.draw do
   get '/recommend', to: 'recommendations#index'
   post '/recommend', to: 'recommendations#create'
   get '/login', to: 'top#login'
+  get '/admin', to: 'admin#recommendations'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
