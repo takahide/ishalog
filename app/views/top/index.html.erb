@@ -103,9 +103,9 @@
         <% if @friends.nil? %>
 
         <% else %>
-          <p class="top-title">利用している友達</p>
           <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
           <p>※まだリリース前のため、このページはSNS等でシェアしないでください。</p>
+          <p class="top-title">あなたの友人でレビュー投稿済みの人たち</p>
           <% @friends.each do |f| %>
             <span class=""><%= f.html_safe %>　</span>
           <% end %>
