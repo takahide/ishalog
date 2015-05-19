@@ -115,11 +115,11 @@
                   </div>
                   <div class="item-inner">
                     <div class="item-title-row">
-                      <div class="item-title"><%= r.doctor %></div>
-                      <div class="item-after"><%= r.location %></div>
+                      <div class="item-title"><%= r.doctor.html_safe %></div>
+                      <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
                     </div>
-                    <div class="item-subtitle"><%= r.department %></div>
-                    <div class="item-text"><%= r.comment %></div>
+                    <div class="item-subtitle"><%= r.department_string %></div>
+                    <div class="item-text"><%= r.comment.html_safe %></div>
                   </div>
                 </a>
                 </li>
