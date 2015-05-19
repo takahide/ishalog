@@ -100,15 +100,33 @@
         <p class=" open-popup top-button new-recommendation">オススメを入力</p>
         <p class=" open-panel top-button">自分の入力情報を編集</p>
 
-        <% if @friends.nil? %>
+        <% if @friends_recommendations.nil? %>
 
         <% else %>
-          <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
-          <p>※まだリリース前のため、このペ>ージはSNS等でシェアしないでください。</p>
-          <p class="top-title">あなたの友人でレビュー投稿済みの人たち</p>
-          <% @friends.each do |f| %>
-            <span class=""><%= f.html_safe %>　</span>
-          <% end %>
+          <div class="content-block-title">友達のオススメ</div>
+          <div class="list-block media-list">
+            <ul>
+            <% @friends_recommendations.each do |r| %>
+              <% if r.department != 0 %>
+                <li class="friend_recommendation">
+                <a href="#" class="item-link item-content">
+                  <div class="item-media">
+                    <%= image_tag "https://graph.facebook.com/#{r.uid}/picture", class: "friend_pic" %>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title"><%= r.doctor %></div>
+                      <div class="item-after"><%= r.location %></div>
+                    </div>
+                    <div class="item-subtitle"><%= r.department %></div>
+                    <div class="item-text"><%= r.comment %></div>
+                  </div>
+                </a>
+                </li>
+              <% end %>
+            <% end %>
+            </ul>
+          </div>
         <% end %>
       </div>
     </div>
