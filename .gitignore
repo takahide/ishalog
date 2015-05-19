@@ -15,3 +15,5 @@
 /log/*.log
 /tmp
 /vendor/bundle
+
+/app/assets/images/fb_pics

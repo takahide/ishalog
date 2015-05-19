@@ -8,3 +8,13 @@
   color: #fff;
 }
 
+.friend_recommendation {
+  .friend_pic {
+    border-radius: 5px;
+  }
+}
+
+// framework7のcssを上書き
+.list-block.media-list .item-link .item-title-row, .list-block li.media-item .item-link .item-title-row {
+  background-image: none;
+}
