@@ -10,7 +10,7 @@
   <% @recommendations.each do |r| %> 
     <% if r.department != 0 %>
       <tr>
-        <td><a href="http://facebook.com/<%= r.uid %>"><%= r.uid %></a></td>
+        <td><a href="http://facebook.com/<%= r.uid %>"><%= image_tag "fb_pics/#{r.uid}.jpg" %></a></td>
         <td><%= @department_strings[r.department] %></td>
         <td><%= r.doctor %></td>
         <td><%= r.location %></td>
