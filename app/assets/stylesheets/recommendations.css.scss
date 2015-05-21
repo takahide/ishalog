@@ -115,6 +115,7 @@
 .fb-picture {
   margin-top: 3px;
   border-radius: 25px;
+  cursor: pointer;
 }
 
 .top-title {
@@ -139,4 +140,9 @@
     appearance: button;
     vertical-align: middle;
   }
+}
+
+.popover {
+  width: 90%;
+  background: rgba(255, 255, 255, .9);
 }
