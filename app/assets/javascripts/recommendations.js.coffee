@@ -1,4 +1,12 @@
 $ ->
+  $(document).on "change", ".department-selector select", ->
+    selected_department = $(@).val()
+    if selected_department == "0"
+      $(".recommendation").css("display", "block")
+    else
+      $(".recommendation").css("display", "none")
+      $(".recommendation.department#{selected_department}").css("display", "block")
+
   $(document).on "click", ".my-recommendation", ->
 
     $(".submit").text("編集を保存")

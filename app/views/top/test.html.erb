@@ -99,6 +99,22 @@
       <div class="content-block">
         <p class=" open-popup top-button new-recommendation">オススメを入力</p>
         <p class=" open-panel top-button">自分の入力情報を編集</p>
+        <div class="item-input department-selector">
+          <select class="department">
+            <option value="0">すべての科目</option>
+            <option value="1">内科</option>
+            <option value="2">歯科</option>
+            <option value="3">眼科</option>
+            <option value="4">耳鼻科</option>
+            <option value="5">皮膚科</option>
+            <option value="6">形成外科</option>
+            <option value="7">整形外科</option>
+            <option value="8">泌尿器科</option>
+            <option value="9">小児科</option>
+            <option value="10">産婦人科</option>
+            <option value="11">精神科</option>
+          </select>
+        </div>
 
         <% if @friends_recommendations.nil? %>
 
@@ -108,7 +124,7 @@
             <ul>
             <% @friends_recommendations.each do |r| %>
               <% if r.department != 0 %>
-                <li class="friend_recommendation">
+                <li class="recommendation department<%= r.department %>">
                 <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                   <div class="item-media">
                     <%= image_tag "fb_pics/#{r.uid}.jpg", class: "friend_pic" %>
@@ -136,7 +152,7 @@
             <ul>
             <% @others_recommendations.each do |r| %>
               <% if r.department != 0 %>
-                <li class="friend_recommendation">
+                <li class="recommendation department<%= r.department %>">
                 <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                   <div class="item-media">
                     <%= image_tag "fb_pics/#{r.uid}.jpg", class: "friend_pic" %>
