@@ -162,7 +162,7 @@
 </div>
 
 <% @friends_recommendations.each do |r| %>
-  <div class="popover popover-rec<%= r.id %>" style="width: 90%;">
+  <div class="popover popover-rec<%= r.id %>">
     <div class="popover-angle"></div>
     <div class="popover-inner">
       <div class="content-block">
@@ -171,8 +171,8 @@
     </div>
   </div>
 <% end %>
-<% @friends_recommendations.each do |r| %>
-  <div class="popover popover-rec<%= r.id %>" style="width: 90%;">
+<% @others_recommendations.each do |r| %>
+  <div class="popover popover-rec<%= r.id %>">
     <div class="popover-angle"></div>
     <div class="popover-inner">
       <div class="content-block">
