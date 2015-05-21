@@ -109,7 +109,35 @@
             <% @friends_recommendations.each do |r| %>
               <% if r.department != 0 %>
                 <li class="friend_recommendation">
-                <a href="#" class="item-link item-content">
+                <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
+                  <div class="item-media">
+                    <%= image_tag "fb_pics/#{r.uid}.jpg", class: "friend_pic" %>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title"><%= r.doctor.html_safe %></div>
+                      <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
+                    </div>
+                    <div class="item-subtitle"><%= r.department_string %></div>
+                    <div class="item-text"><%= r.comment.html_safe %></div>
+                  </div>
+                </a>
+                </li>
+              <% end %>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <% if @others_recommendations.nil? %>
+
+        <% else %>
+          <div class="content-block-title">みんなのオススメ</div>
+          <div class="list-block media-list">
+            <ul>
+            <% @others_recommendations.each do |r| %>
+              <% if r.department != 0 %>
+                <li class="friend_recommendation">
+                <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                   <div class="item-media">
                     <%= image_tag "fb_pics/#{r.uid}.jpg", class: "friend_pic" %>
                   </div>
@@ -132,4 +160,25 @@
     </div>
   </div>
 </div>
+
+<% @friends_recommendations.each do |r| %>
+  <div class="popover popover-rec<%= r.id %>" style="width: 90%;">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="content-block">
+        <p><%= r.comment.html_safe %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% @friends_recommendations.each do |r| %>
+  <div class="popover popover-rec<%= r.id %>" style="width: 90%;">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="content-block">
+        <p><%= r.comment.html_safe %></p>
+      </div>
+    </div>
+  </div>
+<% end %>
 
