@@ -150,3 +150,22 @@
 .navbar {
   background: rgb(209, 0, 32);
 }
+
+.google-link {
+  width: 90%;
+  margin: 20px auto;
+  a {
+    display: block;
+    width: 100%;
+    background: rgb(209, 0, 32);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    &:active {
+      opacity: .9;
+    }
+  }
+}
