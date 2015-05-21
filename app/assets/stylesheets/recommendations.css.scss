@@ -126,12 +126,17 @@
   margin: 30px auto 40px;
   select {
     color: #fff;
-    width: 50%;
+    width: 150px;
     height: 30px;
     border: none;
-    text-align: right;
     cursor: pointer;
-    background: #bbb;
+    background: #f88;
     float: right;
+    padding-left: 10px;
+
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    vertical-align: middle;
   }
 }
