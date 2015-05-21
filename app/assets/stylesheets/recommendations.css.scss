@@ -31,7 +31,7 @@
 }
 
 .top-button {
-  background: #f88;
+  background: rgb(209, 0, 32);
   color: #fff;
   width: 100%;
   margin: 20px auto;
@@ -82,10 +82,10 @@
 }
 
 .panel-left {
-  background: #f88;
+  background: #333;
   .menu {
     li {
-      background: #f88;
+      background: #333;
       color: #fff;
       padding: 20px;
       border-bottom: solid 1px #fff;
@@ -131,7 +131,7 @@
     height: 30px;
     border: none;
     cursor: pointer;
-    background: #f88;
+    background: rgb(209, 0, 32);
     float: right;
     padding-left: 10px;
 
@@ -145,4 +145,8 @@
 .popover {
   width: 70%;
   background: rgba(255, 255, 255, .9);
+}
+
+.navbar {
+  background: rgb(209, 0, 32);
 }
