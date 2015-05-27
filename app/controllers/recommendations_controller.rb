@@ -1,6 +1,4 @@
 class RecommendationsController < ApplicationController
-  def index
-  end
   def create
     json = nil
     uid = current_user.uid
@@ -30,6 +28,16 @@ class RecommendationsController < ApplicationController
       end
     end
     render json: json
+  end
+  def doctor
+    @name = params[:doctor]
+    @location = params[:location]
+    doctor = Doctor.where name: @name, location: @location
+    if doctor.nil?
+      #Googleで取得して、DBへ突っ込む。
+    else
+      #doctorをそのまま見せる
+    end
   end
   def guest_params
     params.require(:recommendation).permit(:id, :doctor, :location, :rating, :department, :comment)

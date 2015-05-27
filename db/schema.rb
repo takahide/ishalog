@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515032630) do
+ActiveRecord::Schema.define(version: 20150525105810) do
+
+  create_table "doctors", force: true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "address"
+    t.string   "tel"
+    t.string   "map"
+    t.string   "hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "recommendations", force: true do |t|
     t.string   "uid"
