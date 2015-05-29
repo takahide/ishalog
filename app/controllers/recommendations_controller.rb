@@ -39,8 +39,5 @@ class RecommendationsController < ApplicationController
       #doctorをそのまま見せる
     end
   end
-  def guest_params
-    params.require(:recommendation).permit(:id, :doctor, :location, :rating, :department, :comment)
-  end
 end
 
