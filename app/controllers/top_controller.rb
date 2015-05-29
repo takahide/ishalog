@@ -59,6 +59,20 @@ class TopController < ApplicationController
       @friends_recommendations = Recommendation.where("uid IN (?)", friend_ids).order(updated_at: :desc).limit(100)
       friend_ids.push current_user.uid
       @others_recommendations = Recommendation.where("uid NOT IN (?)", friend_ids).order(updated_at: :desc).limit(100)
+
+      if params[:rec].present?
+        @friends_recommendations.each do |r|
+          if params[:rec].to_i == r.id
+            @featured_recommendation = r
+          end
+        end
+        @others_recommendations.each do |r|
+          if params[:rec].to_i == r.id
+            @featured_recommendation = r
+          end
+        end
+      end
+
       @my_recommendations = Recommendation.where(uid: uid).order(updated_at: :desc).limit(100)
     else 
       redirect_to "/login"

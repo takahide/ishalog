@@ -115,6 +115,31 @@
           </select>
         </div>
 
+        <% if @featured_recommendation.present? %>
+          <% r = @featured_recommendation %>
+          <div class="rec-block">
+            <div class="list-block media-list">
+              <ul>
+                <li class="recommendation department<%= r.department %>">
+                <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
+                  <div class="item-media">
+                    <img class="friend_pic" src="<%= fb_pic r.uid  %>">
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title"><%= r.doctor.html_safe %></div>
+                      <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
+                    </div>
+                    <div class="item-subtitle"><%= r.department_string %></div>
+                    <div class="item-text"><%= r.comment.html_safe %></div>
+                  </div>
+                </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+
         <% if @friends_recommendations.nil? %>
 
         <% else %>
@@ -127,7 +152,7 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <img class="friend_pic" src="/images/fb_pics/<%= r.uid  %>.jpg">
+                          <img class="friend_pic" src="<%= fb_pic r.uid  %>">
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
@@ -157,7 +182,7 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <img class="friend_pic" src="/images/fb_pics/<%= r.uid  %>.jpg">
+                          <img class="friend_pic" src="<%= fb_pic r.uid  %>">
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
