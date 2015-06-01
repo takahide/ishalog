@@ -23,7 +23,7 @@
     color: #fff;
     padding: 30px;
     .fb-area {
-      width: 300px;
+      width: 100%;
       margin: 0 auto;
     }
   }
@@ -83,6 +83,15 @@
 }
 
 
+@media only screen and (min-width: 500px) {
+  .top-back {
+    .top-box {
+      .fb-area {
+        width: 400px;
+      }
+    }
+  }
+}
 
 
 @media only screen and (min-width: 900px) {
@@ -90,11 +99,11 @@
     background: rgb(162, 0, 0);
   }
   .how-to {
-    width: 1000px;
+    width: 94%;
     margin: 0 auto;
     .step {
       padding: 10px;
-      width: 300px;
+      width: 30%;
       display: inline-block;
       height: 400px;
       .how-to-img {
