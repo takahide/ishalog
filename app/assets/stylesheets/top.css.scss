@@ -78,7 +78,10 @@
 .footer {
   clear: both;
   text-align: center;
-  padding-bottom: 30px;
+  padding-bottom: 40px;
+  p {
+    color: #888;
+  }
   a {
     color: rgb(209, 0, 32);
   }
