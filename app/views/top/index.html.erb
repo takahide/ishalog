@@ -204,7 +204,7 @@
         <% end %>
       </div>
       <div class="footer">
-        <p>2015 ISHALAN All Rights Researved</p>
+        <p>2015 ISHALAN All Rights Reserved</p>
         <a href="/kiyaku.txt">　利用規約</a>
         <a href="/contact">　お問い合わせ</a>
         <a href="/aboutus">　運営団体　</a>
@@ -218,6 +218,7 @@
     <div class="popover-angle"></div>
     <div class="popover-inner">
       <div class="content-block">
+        <p><%= r.doctor.html_safe %>（<%= r.location.html_safe %>）</p>
         <p><%= r.comment.html_safe %><%= friend_name r.uid  %></p>
         <p class="google-link"><a href="https://www.google.co.jp/?q=<%= r.doctor %>+<%= r.location %>#safe=off&q=<%= r.doctor %>+<%= r.location %>" target="_blank">Googleで見る</a></p>
       </div>
@@ -229,6 +230,7 @@
     <div class="popover-angle"></div>
     <div class="popover-inner">
       <div class="content-block">
+        <p><%= r.doctor.html_safe %>（<%= r.location.html_safe %>）</p>
         <p><%= r.comment.html_safe %></p>
         <p class="google-link"><a href="https://www.google.co.jp/?q=<%= r.doctor %>+<%= r.location %>#safe=off&q=<%= r.doctor %>+<%= r.location %>" target="_blank">Googleで見る</a></p>
       </div>
