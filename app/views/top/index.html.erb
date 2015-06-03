@@ -1,9 +1,14 @@
+<div class="circle-button-area open-popup new-recommendation">
+  <div class="circle-button <%= is_new %>">
+    +
+  </div>
+</div>
 <div class="popup popup-about">
   <div class="close-button close-popup">
     ×
   </div>
   <div class="list-block">
-    <p class="popup-title">あなたのオススメの（行きつけの）病院を教えてください（後から何度でも編集できます。<span class="ast">*</span>は必須）</p>
+    <p class="popup-title">あなたのオススメの病院を教えてください！<br><span style="font-size: 85%;">（友達以外には、レビュー内容だけが見えます。この内容は後から何度でも編集できます。<span class="ast">*</span>は必須</span>）</p>
     <ul class="popup-list">
       <li style="display: none;">
       <input class="rec-id" type="text">
@@ -73,9 +78,7 @@
   <div class="list-block">
     <ul class="menu">
       <% @my_recommendations.each do |r| %>
-        <% if r.department != 0 %>
-          <li id="<%= r.id.to_s.html_safe %>" class="open-popup border my-recommendation" department="<%= r.department.to_s.html_safe %>" location="<%= r.location.html_safe %>" comment="<%= r.comment.html_safe %>"><%= r.doctor.html_safe %></li>
-        <% end %>
+        <li id="<%= r.id.to_s.html_safe %>" class="open-popup border my-recommendation" department="<%= r.department.to_s.html_safe %>" location="<%= r.location.html_safe %>" comment="<%= r.comment.html_safe %>"><%= r.doctor.html_safe %></li>
       <% end %>
     </ul>
   </div>
@@ -97,21 +100,139 @@
     </div>
     <div class="page-content">
       <div class="content-block">
-        <p class=" open-popup top-button new-recommendation">オススメを入力</p>
-        <p class=" open-panel top-button">自分の入力情報を編集</p>
+        <div class="item-input department-selector">
+          <select>
+            <option value="0">すべての科目</option>
+            <option value="1">内科</option>
+            <option value="2">歯科</option>
+            <option value="3">眼科</option>
+            <option value="4">耳鼻科</option>
+            <option value="5">皮膚科</option>
+            <option value="6">形成外科</option>
+            <option value="7">整形外科</option>
+            <option value="8">泌尿器科</option>
+            <option value="9">小児科</option>
+            <option value="10">産婦人科</option>
+            <option value="11">精神科</option>
+          </select>
+        </div>
 
-        <% if @friends.nil? %>
+        <% if @featured_recommendation.present? %>
+          <% r = @featured_recommendation %>
+          <div class="rec-block">
+            <div class="list-block media-list">
+              <ul>
+                <li class="recommendation department<%= r.department %>">
+                <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
+                  <div class="item-media">
+                    <%= image_tag fb_pic(r.uid), class: "friend_pic" %>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title-row">
+                      <div class="item-title"><%= r.doctor.html_safe %></div>
+                      <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
+                    </div>
+                    <div class="item-subtitle"><%= r.department_string %></div>
+                    <div class="item-text"><%= r.comment.html_safe %></div>
+                  </div>
+                </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      <% end %>
+
+        <% if @friends_recommendations.nil? %>
 
         <% else %>
-          <p>正式版リリース後に、友達のオススメの病院が見られるようになります。</p>
-          <p>※まだリリース前のため、このペ>ージはSNS等でシェアしないでください。</p>
-          <p class="top-title">あなたの友人でレビュー投稿済みの人たち</p>
-          <% @friends.each do |f| %>
-            <span class=""><%= f.html_safe %>　</span>
-          <% end %>
+          <div class="rec-block">
+            <div class="content-block-title">あなたの友達のオススメ</div>
+            <div class="list-block media-list">
+              <ul>
+                <% @friends_recommendations.each do |r| %>
+                  <% if r.department != 0 %>
+                    <li class="recommendation department<%= r.department %>">
+                      <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
+                        <div class="item-media">
+                          <%= image_tag fb_pic(r.uid), class: "friend_pic", uid: r.uid %>
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title"><%= r.doctor.html_safe %></div>
+                            <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
+                          </div>
+                          <div class="item-subtitle"><%= r.department_string %> </div>
+                          <div class="item-text"><%= r.comment.html_safe %></div>
+                        </div>
+                      </a>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         <% end %>
+        <% if @others_recommendations.nil? %>
+
+        <% else %>
+          <div class="rec-block">
+            <div class="content-block-title">みんなのオススメ</div>
+            <div class="list-block media-list">
+              <ul>
+                <% @others_recommendations.each do |r| %>
+                  <% if r.department != 0 %>
+                    <li class="recommendation department<%= r.department %>">
+                      <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
+                        <div class="item-media">
+                          <%= image_tag random_pic(r.uid), class: "friend_pic" %>
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title"><%= r.doctor.html_safe %></div>
+                            <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
+                          </div>
+                          <div class="item-subtitle"><%= r.department_string %></div>
+                          <div class="item-text"><%= r.comment.html_safe %></div>
+                        </div>
+                      </a>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="footer">
+        <p>2015 ISHALAN All Rights Researved</p>
+        <a href="/kiyaku.txt">　利用規約</a>
+        <a href="/contact">　お問い合わせ</a>
+        <a href="/aboutus">　運営団体　</a>
       </div>
     </div>
   </div>
 </div>
+
+<% @friends_recommendations.each do |r| %>
+  <div class="popover popover-rec<%= r.id %>">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="content-block">
+        <p><%= r.comment.html_safe %><%= friend_name r.uid  %></p>
+        <p class="google-link"><a href="https://www.google.co.jp/?q=<%= r.doctor %>+<%= r.location %>#safe=off&q=<%= r.doctor %>+<%= r.location %>" target="_blank">Googleで見る</a></p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% @others_recommendations.each do |r| %>
+  <div class="popover popover-rec<%= r.id %>">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="content-block">
+        <p><%= r.comment.html_safe %></p>
+        <p class="google-link"><a href="https://www.google.co.jp/?q=<%= r.doctor %>+<%= r.location %>#safe=off&q=<%= r.doctor %>+<%= r.location %>" target="_blank">Googleで見る</a></p>
+      </div>
+    </div>
+  </div>
+<% end %>
 
