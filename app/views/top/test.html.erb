@@ -1,12 +1,14 @@
-<div class="circle-button open-popup new-recommendation <%= is_new %>">
-  +
+<div class="circle-button-area open-popup new-recommendation">
+  <div class="circle-button <%= is_new %>">
+    +
+  </div>
 </div>
 <div class="popup popup-about">
   <div class="close-button close-popup">
     ×
   </div>
   <div class="list-block">
-    <p class="popup-title">あなたのオススメの（行きつけの）病院を教えてください（後から何度でも編集できます。<span class="ast">*</span>は必須）</p>
+    <p class="popup-title">あなたのオススメの病院を教えてください！<br><span style="font-size: 85%;">（友達以外には、レビュー内容だけが見えます。この内容は後から何度でも編集できます。<span class="ast">*</span>は必須</span>）</p>
     <ul class="popup-list">
       <li style="display: none;">
       <input class="rec-id" type="text">
@@ -146,7 +148,7 @@
 
         <% else %>
           <div class="rec-block">
-            <div class="content-block-title">友達のオススメ</div>
+            <div class="content-block-title">あなたの友達のオススメ</div>
             <div class="list-block media-list">
               <ul>
                 <% @friends_recommendations.each do |r| %>
