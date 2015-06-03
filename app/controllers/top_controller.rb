@@ -56,9 +56,9 @@ class TopController < ApplicationController
       @friends.each do |friend|
         friend_ids.push friend['id']
       end
-      @friends_recommendations = Recommendation.where("uid IN (?)", friend_ids).order(updated_at: :desc).limit(100)
-      friend_ids.push current_user.uid
-      @others_recommendations = Recommendation.where("uid NOT IN (?)", friend_ids).order(updated_at: :desc).limit(100)
+      @friends_recommendations = Recommendation.where("uid IN (?) AND department > 0", friend_ids).order(updated_at: :desc).limit(100)
+      friend_ids.push uid
+      @others_recommendations = Recommendation.where("uid NOT IN (?) AND department > 0", friend_ids).order(updated_at: :desc).limit(100)
 
       if params[:rec].present?
         @friends_recommendations.each do |r|
@@ -73,7 +73,7 @@ class TopController < ApplicationController
         end
       end
 
-      @my_recommendations = Recommendation.where(uid: uid).order(updated_at: :desc).limit(100)
+      @my_recommendations = Recommendation.where("uid IN (?) AND department > 0", uid).order(updated_at: :desc).limit(100)
     else 
       redirect_to "/login"
     end
