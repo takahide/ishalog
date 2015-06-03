@@ -1,4 +1,10 @@
 $ ->
+  setTimeout ->
+    if $(".circle-button").hasClass("new")
+      popoverHTML = '<div class="popover"><div class="popover-inner" style="padding: 20px;"><p><b>あなたのオススメの病院を入力しよう！</b><br><br>入力すると、どの友達がどのレビューを書いたか見れるようになります。</p></div></div>'
+      myApp.popover(popoverHTML, $$(".circle-button"))
+  , 1100
+
   $(document).on "change", ".department-selector select", ->
     selected_department = $(@).val()
     if selected_department == "0"

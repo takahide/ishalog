@@ -1,4 +1,4 @@
-<div class="circle-button open-popup new-recommendation">
+<div class="circle-button open-popup new-recommendation <%= is_new %>">
   +
 </div>
 <div class="popup popup-about">
@@ -125,7 +125,7 @@
                 <li class="recommendation department<%= r.department %>">
                 <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                   <div class="item-media">
-                    <img class="friend_pic" src="<%= fb_pic r.uid  %>">
+                    <%= image_tag fb_pic(r.uid), class: "friend_pic" %>
                   </div>
                   <div class="item-inner">
                     <div class="item-title-row">
@@ -154,7 +154,7 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <img class="friend_pic" uid="<%= r.uid %>" src="<%= fb_pic r.uid  %>">
+                          <%= image_tag fb_pic(r.uid), class: "friend_pic", uid: r.uid %>
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
@@ -184,7 +184,7 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <%= image_tag "unknown.png", class: "friend_pic" %>
+                          <%= image_tag random_pic(r.uid), class: "friend_pic" %>
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
