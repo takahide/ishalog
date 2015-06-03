@@ -18,7 +18,7 @@ class TopController < ApplicationController
           end
         end
       end
-      @friends = @graph.get_connections('me', 'friends', :local => 'ja-jp')
+      @friends = @graph.get_connections('me', 'friends', :local => 'ja-jp', :limit => 1000)
       friend_ids = []
       @friends.each do |friend|
         friend_ids.push friend['id']
