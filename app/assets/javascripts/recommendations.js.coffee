@@ -71,6 +71,9 @@ $ ->
           myApp.closeModal()
           $("ul.menu li#" + json.id).css("display", "none")
           $("ul.menu").prepend('<li id="' + json.id + '" class="open-popup border my-recommendation" department="' + json.department + '" location="' + json.location + '" comment="' + json.comment + '">' + json.doctor + '</li>')
+          $(".friend_pic").each ->
+            uid = $(@).attr("uid")
+            $(@).attr("src", "/images/fb_pics/#{uid}.jpg")
         )
       error: (XMLHttpRequest, textStatus, errorThrown) ->
         myApp.hidePreloader()

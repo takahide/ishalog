@@ -18,9 +18,9 @@ class TopController < ApplicationController
           end
         end
       end
-      friends = @graph.get_connections('me', 'friends', :local => 'ja-jp')
+      @friends = @graph.get_connections('me', 'friends', :local => 'ja-jp')
       friend_ids = []
-      friends.each do |friend|
+      @friends.each do |friend|
         friend_ids.push friend['name']
       end
       @friends = friend_ids
@@ -51,9 +51,9 @@ class TopController < ApplicationController
           end
         end
       end
-      friends = @graph.get_connections('me', 'friends', :local => 'ja-jp')
+      @friends = @graph.get_connections('me', 'friends', :local => 'ja-jp')
       friend_ids = []
-      friends.each do |friend|
+      @friends.each do |friend|
         friend_ids.push friend['id']
       end
       @friends_recommendations = Recommendation.where("uid IN (?)", friend_ids).order(updated_at: :desc).limit(100)

@@ -1,3 +1,6 @@
+<div class="circle-button open-popup new-recommendation">
+  +
+</div>
 <div class="popup popup-about">
   <div class="close-button close-popup">
     ×
@@ -97,7 +100,6 @@
     </div>
     <div class="page-content">
       <div class="content-block">
-        <p class=" open-popup top-button new-recommendation">オススメを入力</p>
         <div class="item-input department-selector">
           <select>
             <option value="0">すべての科目</option>
@@ -152,14 +154,14 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <img class="friend_pic" src="<%= fb_pic r.uid  %>">
+                          <img class="friend_pic" uid="<%= r.uid %>" src="<%= fb_pic r.uid  %>">
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
                             <div class="item-title"><%= r.doctor.html_safe %></div>
                             <div class="item-after"><%= r.location.split("駅")[0].html_safe %></div>
                           </div>
-                          <div class="item-subtitle"><%= r.department_string %></div>
+                          <div class="item-subtitle"><%= r.department_string %> </div>
                           <div class="item-text"><%= r.comment.html_safe %></div>
                         </div>
                       </a>
@@ -182,7 +184,7 @@
                     <li class="recommendation department<%= r.department %>">
                       <a href="#" class="item-link item-content open-popover" data-popover=".popover-rec<%= r.id %>">
                         <div class="item-media">
-                          <img class="friend_pic" src="<%= fb_pic r.uid  %>">
+                          <%= image_tag "unknown.png", class: "friend_pic" %>
                         </div>
                         <div class="item-inner">
                           <div class="item-title-row">
@@ -215,7 +217,7 @@
     <div class="popover-angle"></div>
     <div class="popover-inner">
       <div class="content-block">
-        <p><%= r.comment.html_safe %></p>
+        <p><%= r.comment.html_safe %><%= friend_name r.uid  %></p>
         <p class="google-link"><a href="https://www.google.co.jp/?q=<%= r.doctor %>+<%= r.location %>#safe=off&q=<%= r.doctor %>+<%= r.location %>" target="_blank">Googleで見る</a></p>
       </div>
     </div>
