@@ -23,9 +23,9 @@ class TopController < ApplicationController
       @friends.each do |friend|
         friend_ids.push friend['id']
       end
-      @friends_recommendations = Recommendation.where("uid IN (?) AND department > 0", friend_ids).order(updated_at: :desc).limit(100)
+      @friends_recommendations = Recommendation.where("uid IN (?) AND department > 0", friend_ids).order(updated_at: :desc)
       friend_ids.push uid
-      @others_recommendations = Recommendation.where("uid NOT IN (?) AND department > 0", friend_ids).order(updated_at: :desc).limit(100)
+      @others_recommendations = Recommendation.where("uid NOT IN (?) AND department > 0", friend_ids).order(updated_at: :desc)
 
       if params[:rec].present?
         @friends_recommendations.each do |r|
