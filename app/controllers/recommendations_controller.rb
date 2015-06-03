@@ -9,12 +9,15 @@ class RecommendationsController < ApplicationController
     department = params[:department].delete('"').delete("'")
     comment = params[:comment].delete('"').delete("'")
     if id == "new"
-      Recommendation.where(uid: uid, doctor: doctor, location: location).first_or_create do |r|
-        r.rating = rating
-        r.department = department
-        r.comment = comment
-        json = r
-      end
+      r = Recommendation.new
+      r.uid = uid
+      r.doctor = doctor
+      r.location = location
+      r.rating = rating
+      r.department = department
+      r.comment = comment
+      r.save
+      json = r
     else
       r = Recommendation.find(id)
       if r.uid == uid
