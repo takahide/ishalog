@@ -15,7 +15,7 @@
 
 class Recommendation < ActiveRecord::Base
   def department_string
-    department_strings = %w(なし 内科 歯科 眼科 耳鼻科 皮膚科 形成外科 整形外科 泌尿器科 小児科 産婦人科 精神科)
+    department_strings = %w(なし 内科 歯科 眼科 耳鼻科 皮膚科 外科 整形外科 泌尿器科 小児科 産婦人科 精神科 総合病院)
     department_strings[self.department]
   end
 end

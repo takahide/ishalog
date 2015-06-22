@@ -20,3 +20,25 @@
     <% end %>
   <% end %>
 </table>
+<table>
+  <tr>
+    <td>Facebook ID</td>
+    <td>科目</td>
+    <td>医者名</td>
+    <td>最寄駅</td>
+    <td>コメント</td>
+    <td>時刻</td>
+  </tr>
+  <% @recommendations.each do |r| %> 
+    <% if r.department != 0 %>
+      <tr>
+        <td><a href="http://facebook.com/<%= r.uid %>"><%= image_tag "fb_pics/#{r.uid}.jpg" %></a></td>
+        <td><%= @department_strings[r.department] %></td>
+        <td><%= r.doctor %></td>
+        <td><%= r.location %></td>
+        <td><%= r.comment %></td>
+        <td><%= r.updated_at %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
