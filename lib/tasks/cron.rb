@@ -15,6 +15,27 @@ class Cron
     end
   end
 
+  def self.hospital_pages_to_doctors
+    HospitalPage.find_each do |p|
+      next if p.html.nil?
+      html = Nokogiri::HTML(p.html, nil, 'utf-8')
+      clinics = html.css("table.corp_table tr.clinic")
+      clinics.each do |c|
+        name = c.css("h3.clinic_name").text.strip.gsub(/(\n)/," ") if c.css("h3.clinic_name").present?
+        address = c.css(".clinic_address").text.strip.gsub(/(\n)/," ").gsub(/(\[.*\])/, "").gsub(/\s\s/, " ").strip if c.css(".clinic_address").present?
+        Clinic.where(name: name, address: address).first_or_create do |clinic|
+          clinic.department = c.css(".clinic_cate").text.strip if c.css(".clinic_cate").present?
+          station_info = c.css(".clinic_rail_station").text.strip.gsub(/(\n)/," ").split("(") if c.css(".clinic_rail_station").present?
+          clinic.station = station_info[0].strip if station_info[0].present?
+          clinic.distance = station_info[1].split(")")[0].strip if station_info[1].present?
+          clinic.tel = c.css(".clinic_tel").text.strip if c.css(".clinic_tel").present?
+          clinic.holidays = c.css(".clinic_list_hour_holiday").text.strip.gsub(/(\n)/," ") if c.css(".clinic_list_hour_holiday").present?
+          clinic.url = c.css(".clinic_url a").attr("href").content.strip if c.css(".clinic_url a").present?
+        end
+      end
+    end
+  end
+
   def self.pics
     Recommendation.find_each do |r|
       img_url = "https://graph.facebook.com/#{r.uid}/picture"

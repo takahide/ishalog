@@ -2,16 +2,20 @@
 
 one:
   name: MyString
-  location: MyString
+  department: MyString
   address: MyString
+  station: MyString
+  distance: MyString
   tel: MyString
-  map: MyString
-  hours: MyString
+  holidays: MyString
+  url: MyString
 
 two:
   name: MyString
-  location: MyString
+  department: MyString
   address: MyString
+  station: MyString
+  distance: MyString
   tel: MyString
-  map: MyString
-  hours: MyString
+  holidays: MyString
+  url: MyString
