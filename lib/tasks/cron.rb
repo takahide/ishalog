@@ -4,8 +4,10 @@ require 'kconv'
 
 class Cron
   def self.get_hospital_pages
-    prefecture = "tokyo"
-    max = 1894
+    #prefecture = "tokyo"
+    #max = 1894
+    prefecture = "kanagawa"
+    max = 958
     for page in 1..max
       p = HospitalPage.new
       p.prefecture = prefecture
@@ -19,7 +21,7 @@ class Cron
     HospitalPage.find_each do |p|
       next if p.html.nil?
       html = Nokogiri::HTML(p.html, nil, 'utf-8')
-      clinics = html.css("table.corp_table tr.clinic")
+      clinics = html.css("table.corp_table tr.clinic") #薬局はtr.pharmなので除外される
       clinics.each do |c|
         name = c.css("h3.clinic_name").text.strip.gsub(/(\n)/," ") if c.css("h3.clinic_name").present?
         address = c.css(".clinic_address").text.strip.gsub(/(\n)/," ").gsub(/(\[.*\])/, "").gsub(/\s\s/, " ").strip if c.css(".clinic_address").present?
@@ -51,8 +53,8 @@ class Cron
     end
   end
 
-  def self.access url, sec=1
-    sleep(rand(12) + sec)
+  def self.access url, sec=20
+    sleep(rand(22) + sec)
     method_name = caller[0][/`([^']*)'/, 1]
     logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
     logger.debug "Accessing #{url}"
