@@ -1,0 +1,5 @@
+# Logfile created on 2015-06-23 13:37:13 +0900 by logger.rb/36483
+D, [2015-06-23T13:37:13.853712 #73671] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=1
+D, [2015-06-23T13:39:37.802409 #73891] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=1
+D, [2015-06-23T13:42:30.675793 #73993] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=1
+D, [2015-06-23T13:42:35.108047 #73993] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=2

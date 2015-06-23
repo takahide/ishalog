@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529172130) do
+ActiveRecord::Schema.define(version: 20150623042025) do
 
   create_table "contacts", force: true do |t|
     t.string   "name"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20150529172130) do
     t.string   "tel"
     t.string   "map"
     t.string   "hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hospital_pages", force: true do |t|
+    t.string   "prefecture"
+    t.integer  "page"
+    t.text     "html"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

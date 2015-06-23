@@ -5,6 +5,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'annotate'
+gem 'nokogiri', '1.6.1'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
