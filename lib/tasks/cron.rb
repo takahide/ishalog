@@ -26,8 +26,8 @@ class Cron
         Clinic.where(name: name, address: address).first_or_create do |clinic|
           clinic.department = c.css(".clinic_cate").text.strip if c.css(".clinic_cate").present?
           station_info = c.css(".clinic_rail_station").text.strip.gsub(/(\n)/," ").split("(") if c.css(".clinic_rail_station").present?
-          clinic.station = station_info[0].strip if station_info[0].present?
-          clinic.distance = station_info[1].split(")")[0].strip if station_info[1].present?
+          clinic.station = station_info[0].strip if station_info.present?
+          clinic.distance = station_info[1].split(")")[0].strip if station_info.size >= 2
           clinic.tel = c.css(".clinic_tel").text.strip if c.css(".clinic_tel").present?
           clinic.holidays = c.css(".clinic_list_hour_holiday").text.strip.gsub(/(\n)/," ") if c.css(".clinic_list_hour_holiday").present?
           clinic.url = c.css(".clinic_url a").attr("href").content.strip if c.css(".clinic_url a").present?
