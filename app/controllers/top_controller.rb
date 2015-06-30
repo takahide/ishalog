@@ -3,7 +3,13 @@ require "open-uri"
 class TopController < ApplicationController
   def search 
     station = params[:s]
-    @clinics = Clinic.where station: station
+    department = params[:d]
+    if params[:s].blank?
+      station = ""
+      redirect_to "/"
+    end
+    station = "#{station}駅" if station[-1] != "駅"
+    @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%")
   end
 
   def index
