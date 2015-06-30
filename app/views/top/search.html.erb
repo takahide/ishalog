@@ -1,0 +1,58 @@
+<div class="panel-overlay"></div>
+
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-left panel-reveal">
+  <div class="list-block">
+    <ul class="menu">
+    </ul>
+  </div>
+</div>
+
+<div class="views">
+  <div class="view view-main" style="background: #fff;">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left open-panel">
+          <p class="link open-panel">　</p>
+        </div>
+
+        <div class="center sliding logo"><%= image_tag "ishalan.png", width: "160" %></div>
+        <div class="right sliding">
+        </div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="content-block">
+        <div class="rec-block">
+          <div class="content-block-title">病院一覧</div>
+          <div class="list-block media-list">
+            <ul>
+              <% @clinics.each do |c| %>
+                <li>
+                  <a href="<%= c.url %>" target="_blank" class="item-link item-content">
+                    <div class="item-media">
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title"><%= c.name %></div>
+                        <div class="item-after"><%= c.station %> <%= c.distance %></div>
+                      </div>
+                      <div class="item-subtitle"><%= c.department %></div>
+                      <div class="item-text"><%= c.address %><br><%= c.tel %></div>
+                    </div>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <p>2015 ISHALAN All Rights Reserved</p>
+        <a href="/kiyaku.txt">　利用規約</a>
+        <a href="/contact">　お問い合わせ</a>
+        <a href="/aboutus">　運営団体　</a>
+      </div>
+    </div>
+  </div>
+</div>

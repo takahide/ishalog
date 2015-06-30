@@ -10,6 +10,10 @@ Ishalog::Application.routes.draw do
   post '/contact', to: 'contact#create'
   get '/aboutus', to: 'top#aboutus'
   get '/admin', to: 'admin#recommendations'
+  get '/search', to: 'top#search'
+
+  get '*anything', to: 'errors#routing_error'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

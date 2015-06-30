@@ -1,6 +1,11 @@
 require "open-uri"
 
 class TopController < ApplicationController
+  def search 
+    station = params[:s]
+    @clinics = Clinic.where station: station
+  end
+
   def index
     if current_user.present?
       token = current_user.token
