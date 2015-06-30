@@ -4,10 +4,12 @@ class TopController < ApplicationController
   def search 
     station = params[:s]
     department = params[:d]
+    department = "耳鼻いんこう科" if department == "耳鼻科"
     if params[:s].blank?
       station = ""
       redirect_to "/"
     end
+
     station = "#{station}駅" if station[-1] != "駅"
     @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%")
   end
