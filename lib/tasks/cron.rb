@@ -4,16 +4,16 @@ require 'kconv'
 
 class Cron
   def self.get_hospital_pages
-    #prefecture = "tokyo"
-    #max = 1894
-    prefecture = "kanagawa"
-    max = 958
-    for page in 1..max
-      p = HospitalPage.new
-      p.prefecture = prefecture
-      p.page = page
-      p.html = access("http://byoinnavi.jp/#{prefecture}?p=#{page}").to_s
-      p.save
+    Prefecture.find_each do |pref|
+      prefecture = pref.url
+      max = pref.page_number
+      for page in 1..max
+        p = HospitalPage.new
+        p.prefecture = prefecture
+        p.page = page
+        p.html = access("http://byoinnavi.jp/#{prefecture}?p=#{page}").to_s
+        p.save
+      end
     end
   end
 
@@ -78,8 +78,8 @@ class Cron
     end
   end
 
-  def self.access url, sec=3
-    sleep(rand(3) + sec)
+  def self.access url, sec=15
+    sleep(rand(10) + sec)
     method_name = caller[0][/`([^']*)'/, 1]
     logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
     logger.debug "Accessing #{url}"

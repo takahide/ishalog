@@ -3,3 +3,6 @@ D, [2015-06-23T13:37:13.853712 #73671] DEBUG -- : Accessing http://byoinnavi.jp/
 D, [2015-06-23T13:39:37.802409 #73891] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=1
 D, [2015-06-23T13:42:30.675793 #73993] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=1
 D, [2015-06-23T13:42:35.108047 #73993] DEBUG -- : Accessing http://byoinnavi.jp/tokyo?p=2
+D, [2015-07-04T02:25:08.163092 #15510] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido?p=1
+D, [2015-07-04T02:25:27.391368 #15510] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido?p=2
+D, [2015-07-04T02:25:45.242709 #15510] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido?p=3
