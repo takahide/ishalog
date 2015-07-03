@@ -1,0 +1,5 @@
+# Logfile created on 2015-07-04 02:00:34 +0900 by logger.rb/36483
+D, [2015-07-04T02:00:34.458450 #14566] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido
+D, [2015-07-04T02:01:58.737760 #14659] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido
+D, [2015-07-04T02:04:56.659605 #14811] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido
+D, [2015-07-04T02:08:10.017050 #14977] DEBUG -- : Accessing http://byoinnavi.jp/hokkaido

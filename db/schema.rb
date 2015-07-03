@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623164324) do
+ActiveRecord::Schema.define(version: 20150703164303) do
 
   create_table "clinics", force: true do |t|
     t.string   "name"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20150623164324) do
     t.string   "prefecture"
     t.integer  "page"
     t.text     "html"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prefectures", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "page_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

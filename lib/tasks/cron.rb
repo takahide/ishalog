@@ -17,6 +17,31 @@ class Cron
     end
   end
 
+  def self.get_prefectures
+    page = access("http://byoinnavi.jp").to_s
+    html = Nokogiri::HTML(page, nil, 'utf-8')
+    prefectures = html.css(".top_area_prefs_left a") + html.css(".top_area_prefs_right a")
+    prefectures.each do |p|
+      name = p.text.strip
+      url =  p.attr("href").split("/").last
+      pref = Prefecture.new
+      pref.name = name
+      pref.url = url
+      pref.save
+    end
+  end
+
+  def self.get_page_numbers
+    Prefecture.find_each do |p|
+      page = access("http://byoinnavi.jp/#{p.url}").to_s
+      html = Nokogiri::HTML(page, nil, 'utf-8')
+      all = html.css("#left_main h2 strong.key").first.text.delete(",").delete("件").to_i
+      page_number = ((all - (all % 15)) / 15) + 1
+      p.page_number = page_number
+      p.save
+    end
+  end
+
   def self.hospital_pages_to_doctors
     HospitalPage.find_each do |p|
       next if p.html.nil?
@@ -53,8 +78,8 @@ class Cron
     end
   end
 
-  def self.access url, sec=20
-    sleep(rand(22) + sec)
+  def self.access url, sec=3
+    sleep(rand(3) + sec)
     method_name = caller[0][/`([^']*)'/, 1]
     logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
     logger.debug "Accessing #{url}"
