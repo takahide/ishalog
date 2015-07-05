@@ -82,8 +82,8 @@ class Cron
     end
   end
 
-  def self.access url, sec=15
-    sleep(rand(10) + sec)
+  def self.access url, sec=5
+    sleep(rand(20) + sec)
     method_name = caller[0][/`([^']*)'/, 1]
     logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
     logger.debug "Accessing #{url}"
