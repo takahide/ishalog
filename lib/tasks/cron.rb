@@ -36,7 +36,11 @@ class Cron
       page = access("http://byoinnavi.jp/#{p.url}").to_s
       html = Nokogiri::HTML(page, nil, 'utf-8')
       all = html.css("#left_main h2 strong.key").first.text.delete(",").delete("件").to_i
-      page_number = ((all - (all % 15)) / 15) + 1
+      if all % 15 == 0
+        page_number = ((all - (all % 15)) / 15)
+      else
+        page_number = ((all - (all % 15)) / 15) + 1
+      end
       p.page_number = page_number
       p.save
     end
