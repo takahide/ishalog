@@ -63,7 +63,7 @@ class Cron
           end
           clinic.tel = c.css(".clinic_tel").text.strip if c.css(".clinic_tel").present?
           clinic.holidays = c.css(".clinic_list_hour_holiday").text.strip.gsub(/(\n)/," ") if c.css(".clinic_list_hour_holiday").present?
-          url = c.css(".clinic_url a").attr("href").content.strip if c.css(".clinic_url a").present? && c.css(".clinic_url a").attr("href").content.strip.length <= 255
+          clinic.url = c.css(".clinic_url a").attr("href").content.strip if c.css(".clinic_url a").present? && c.css(".clinic_url a").attr("href").content.strip.length <= 255
         end
       end
     end
