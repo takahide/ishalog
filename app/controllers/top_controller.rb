@@ -1,6 +1,7 @@
 require "open-uri"
 
 class TopController < ApplicationController
+
   def search 
     station = params[:s]
     department = params[:d]

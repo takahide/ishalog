@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
+require 'openssl'
 require 'kconv'
+
 
 class Cron
   def self.get_hospital_pages
@@ -82,11 +84,70 @@ class Cron
     end
   end
 
+  def self.get_stations
+    pages = [
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%82",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%84",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%86-%E3%81%88",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%8A",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%8B",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%8D",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%8F-%E3%81%91",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%93",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%95",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%97-%E3%81%97%E3%82%82",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%97%E3%82%84-%E3%81%97%E3%82%93",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%99-%E3%81%9D",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%9F",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%A1-%E3%81%A6",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%A8",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%AA",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%AB",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%AC-%E3%81%AE",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%AF",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%B2",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%B5-%E3%81%BB",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%BE",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%81%BF",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%82%80-%E3%82%82",
+      "https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E9%89%84%E9%81%93%E9%A7%85%E4%B8%80%E8%A6%A7_%E3%82%84-%E3%82%8F%E8%A1%8C"
+    ]
+
+    pages.each do |p|
+      page = ssl_access(p).to_s
+      html = Nokogiri::HTML(page, nil, 'utf-8')
+      lis = html.css("h4 + ul li")
+      lis.each do |l|
+        station = Station.new
+        station.raw = l.text
+        station.name = l.css("a").text
+        station.save
+      end
+    end
+  end
+
+  def self.retrieve_departments
+    Clinic.find_each do |c|
+      departments = c.department.split(",")
+      departments.each do |d|
+        Department.where(name: d.strip).first_or_create
+      end
+    end
+  end
+
   def self.access url, sec=5
     sleep(rand(20) + sec)
     method_name = caller[0][/`([^']*)'/, 1]
     logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
     logger.debug "Accessing #{url}"
     Nokogiri::HTML(open(url).read.toutf8, nil, 'utf-8')
+  end
+
+  def self.ssl_access url, sec=1
+    sleep(rand(2) + sec)
+    method_name = caller[0][/`([^']*)'/, 1]
+    logger = Logger.new "log/runner/#{method_name.split(" ").last}.log"
+    logger.debug "Accessing #{url}"
+    Nokogiri::HTML(open(url, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read.toutf8, nil, 'utf-8')
   end
 end
