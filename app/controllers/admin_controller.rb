@@ -16,7 +16,7 @@ class AdminController < ApplicationController
     d = Department.find params[:id]
     d.canon = params[:canon]
     d.save
-    redirect_to "/admin/departments"
+    render json: d
   end
 
   private

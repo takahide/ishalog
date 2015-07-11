@@ -1,11 +1,13 @@
 <table border>
   <tr>
-    <th>Before</th>
-    <th>After</th>
+    <th>Original</th>
+    <th>Canonical</th>
+    <th></th>
   </tr>
   <% @departments.each do |d| %>
     <tr>
       <th><%= d.name %></th>
+      <th id="name<%= d.id %>"><%= d.canon %></th>
       <th><input id="<%= d.id %>" value="<%= d.canon %>"></th>
     </tr>
   <% end %>
@@ -14,10 +16,14 @@
 <script>
 $("input").blur(function() {
     var id = $(this).attr("id");
+    $("#name" + id).html("<span style='color: orange;'>更新中...</span>")
     var url = "/admin/departments/update?id=" + id + "&canon=" + $(this).val();
     $.ajax({
         type: "GET",
-        url: url
+        url: url,
+        success: function(data, dataType){
+          $("#name" + data.id).html(data.canon);
+        }
     });
 });
 </script>
