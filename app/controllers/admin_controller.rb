@@ -8,7 +8,7 @@ class AdminController < ApplicationController
   end
 
   def departments
-    @departments = Department.all
+    @departments = Department.all.order(:id)
     render layout: "admin"
   end
 
