@@ -6,6 +6,19 @@ class AdminController < ApplicationController
     @contacts = Contact.all
     render layout: false
   end
+
+  def departments
+    @departments = Department.all
+    render layout: "admin"
+  end
+
+  def edit_departments
+    d = Department.find params[:id]
+    d.canon = params[:canon]
+    d.save
+    redirect_to "/admin/departments"
+  end
+
   private
     def basic
       authenticate_or_request_with_http_basic do |user, pass|

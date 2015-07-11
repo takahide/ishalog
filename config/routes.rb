@@ -9,8 +9,12 @@ Ishalog::Application.routes.draw do
   get '/contact', to: 'contact#index'
   post '/contact', to: 'contact#create'
   get '/aboutus', to: 'top#aboutus'
-  get '/admin', to: 'admin#recommendations'
   get '/search', to: 'top#search'
+
+  get '/admin', to: 'admin#recommendations'
+  get '/admin/departments', to: 'admin#departments'
+  get '/admin/departments/:id/:canon', to: 'admin#edit_departments'
+
 
   get '*anything', to: 'errors#routing_error'
 

@@ -1,0 +1,22 @@
+<table border>
+  <tr>
+    <th>Before</th>
+    <th>After</th>
+    <th></th>
+  </tr>
+  <% @departments.each do |d| %>
+    <tr>
+      <th><%= d.name %></th>
+      <th><input id="canon<%= d.id %>" value="<%= d.canon %>"></th>
+      <th><button id="<%= d.id %>">更新</button></th>
+    </tr>
+  <% end %>
+</table>
+
+<script>
+$("button").click(function() {
+    var id = $(this).attr("id");
+    var url = "/admin/departments/" + id + "/" + $("#canon" + id).val();
+    location.href = url
+});
+</script>
