@@ -2,21 +2,22 @@
   <tr>
     <th>Before</th>
     <th>After</th>
-    <th></th>
   </tr>
   <% @departments.each do |d| %>
     <tr>
       <th><%= d.name %></th>
-      <th><input id="canon<%= d.id %>" value="<%= d.canon %>"></th>
-      <th><button id="<%= d.id %>">更新</button></th>
+      <th><input id="<%= d.id %>" value="<%= d.canon %>"></th>
     </tr>
   <% end %>
 </table>
 
 <script>
-$("button").click(function() {
+$("input").blur(function() {
     var id = $(this).attr("id");
-    var url = "/admin/departments/" + id + "/" + $("#canon" + id).val();
-    location.href = url
+    var url = "/admin/departments/" + id + "/" + $(this).val();
+    $.ajax({
+        type: "GET",
+        url: url
+    });
 });
 </script>
