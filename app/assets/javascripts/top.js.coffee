@@ -1,3 +1,16 @@
+$(document).on "keyup", "input.station", ->
+  str = $(@).val()
+  if str.length >= 1
+    $.ajax {
+      type: "GET"
+      url: "/stations/suggest?s=#{str}"
+      success: (json) ->
+        html = ""
+        for s in json
+          html += "<p>#{s.name}</p>"
+        $(".suggest").html(html)
+    }
+
 $(document).on "click", ".fb-button", ->
   myApp.showPreloader 'Facebookに接続中...'
 

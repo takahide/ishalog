@@ -123,6 +123,30 @@ class Cron
         station.name = l.css("a").text
         station.save
       end
+
+      lis = html.css("h3 + ul li")
+      lis.each do |l|
+        unless l.text == "アカウント作成" || l.text == "ログイン" || l.text == "ページ" || l.text == "ノート" || l.text == "閲覧" || l.text == "編集" || l.text == "履歴表示" 
+          station = Station.new
+          station.raw = l.text
+          station.name = l.css("a").text
+          station.save
+        end
+      end
+    end
+
+    Station.find_each do |s|
+      a = s.raw.split("（")[1] if s.raw.split("（").size > 1
+      if a.nil?
+        hiragana = s.name
+      else
+        b = a.split("）")[0]
+        hiragana = b.split("・")[0]
+      end
+      hiragana.gsub!(/えき$/, "")
+      hiragana.gsub!(/駅$/, "")
+      s.hiragana = hiragana
+      s.save
     end
   end
 

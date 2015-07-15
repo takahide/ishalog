@@ -2,6 +2,7 @@ Ishalog::Application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   get '/', to: 'top#index'
+  get '/recommendations', to: 'top#recommendations'
   get '/recommend', to: 'recommendations#index'
   post '/recommend', to: 'recommendations#create'
   get '/login', to: 'top#login'
@@ -10,6 +11,9 @@ Ishalog::Application.routes.draw do
   post '/contact', to: 'contact#create'
   get '/aboutus', to: 'top#aboutus'
   get '/search', to: 'top#search'
+
+  get '/stations/suggest', to: 'station#suggest'
+  get '/stations', to: 'station#show'
 
   get '/admin', to: 'admin#recommendations'
   get '/admin/departments', to: 'admin#departments'

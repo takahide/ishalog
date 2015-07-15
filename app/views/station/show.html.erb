@@ -23,17 +23,11 @@
     </div>
     <div class="page-content">
       <div class="content-block">
-        <form action="search" method="get">
-          <div>
-            <label>駅:</label><input class="station" name="s">
-            <div class="suggest">
-            </div>
-          </div>
-          <div>
-          <label>科目:</label><input class="department" name="d">
-          </div>
-          <input type="submit" value="検索">
-        </form>
+        <%= page_entries_info @stations %>
+        <% @stations.each do |s| %>
+          <p><%= s.name %></p>
+        <% end%>
+        <%= paginate @stations %>
       </div>
       <div class="footer">
         <p>2015 ISHALAN All Rights Reserved</p>

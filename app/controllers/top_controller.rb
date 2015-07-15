@@ -1,6 +1,8 @@
 require "open-uri"
 
 class TopController < ApplicationController
+  def index
+  end
 
   def search 
     station = params[:s]
@@ -15,7 +17,7 @@ class TopController < ApplicationController
     @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%")
   end
 
-  def index
+  def recommendations
     if current_user.present?
       token = current_user.token
       uid = current_user.uid
