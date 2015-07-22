@@ -7,7 +7,17 @@ class TopController < ApplicationController
   def search 
     s = params[:s].split("(")
     station = s[0].strip
-    prefecture = s[1].strip if s[1].present?
+    pf = s[1].strip if s[1].present?
+    prefecture = ""
+
+    if pf.present?
+      prefectures = Prefecture.all
+      prefectures.any? do |p|
+        if prefecture.include? p.name
+          prefecture = p.name
+        end
+      end
+    end
 
     department = params[:d]
     department = "耳鼻いんこう科" if department == "耳鼻科"
@@ -17,7 +27,7 @@ class TopController < ApplicationController
     end
 
     station = "#{station}駅" if station[-1] != "駅"
-    @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%")
+    @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%").where("address LIKE ?", "#{prefecture}%")
     if station.present? && department.present?
       @title = "#{station}の#{department}一覧"
     elsif station.present?
