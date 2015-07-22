@@ -15,15 +15,7 @@ class TopController < ApplicationController
 
     station = "#{station}駅" if station[-1] != "駅"
     @clinics = Clinic.where(station: station).where("department LIKE ?", "%#{department}%")
-    if station.present? && department.present?
-      @title = "#{station}の#{department}一覧"
-    elsif station.present?
-      @title = "#{station}の病院一覧"
-    elsif department.present?
-      @title = "#{department}一覧"
-    else
-      @title = "病院一覧"
-    end
+    @title = "#{station}の#{department}一覧"
   end
 
   def recommendations
