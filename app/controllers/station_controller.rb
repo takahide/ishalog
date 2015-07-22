@@ -1,6 +1,14 @@
 class StationController < ApplicationController
   def show
-    @stations = Station.page(params[:page])
+    @first = params[:first]
+    if @first.present?
+      s = @first
+      stations = Station.where("hiragana like ?", "#{s}%")
+      @stations = stations.page(params[:page])
+    else 
+      @hiraganas = %w(あ い う え お か き く け こ さ し す せ そ た ち つ て と な に ぬ ね の は ひ ふ へ ほ ま み む め も や ゆ よ ら り る れ ろ わ)
+      render template: "station/top"
+    end
   end
 
   def suggest

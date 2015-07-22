@@ -1,0 +1,17 @@
+ja:
+  views:
+    pagination:
+      first: "<<"
+      last: ">>"
+      previous: "<"
+      next: ">"
+      truncate: "..."
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "見つかりませんでした。"
+          one: "全1件を表示中"
+          other: "全%{count}件を表示中"
+      more_pages:
+        display_entries: "%{total}件中%{first}-%{last}件を表示中"

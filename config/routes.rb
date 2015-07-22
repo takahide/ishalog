@@ -6,14 +6,13 @@ Ishalog::Application.routes.draw do
   get '/recommend', to: 'recommendations#index'
   post '/recommend', to: 'recommendations#create'
   get '/login', to: 'top#login'
-  get '/d/:doctor/:location', to: 'recommendations#doctor'
   get '/contact', to: 'contact#index'
   post '/contact', to: 'contact#create'
   get '/aboutus', to: 'top#aboutus'
   get '/search', to: 'top#search'
 
   get '/stations/suggest', to: 'station#suggest'
-  get '/stations', to: 'station#show'
+  get '/stations', to: 'station#show', as: 'stations_top'
 
   get '/admin', to: 'admin#recommendations'
   get '/admin/departments', to: 'admin#departments'

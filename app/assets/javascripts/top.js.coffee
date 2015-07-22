@@ -7,9 +7,19 @@ $(document).on "keyup", "input.station", ->
       success: (json) ->
         html = ""
         for s in json
-          html += "<p>#{s.name}</p>"
+          html += "<p class='suggest-option'>#{s.name}</p>"
         $(".suggest").html(html)
     }
+
+$(document).on "focus", "input.department", ->
+  $(".suggest").html("")
+
+
+$(document).on "click", ".suggest-option", ->
+  $("input.station").val($(@).text())
+  $(".suggest").html("")
+
+
 
 $(document).on "click", ".fb-button", ->
   myApp.showPreloader 'Facebookに接続中...'

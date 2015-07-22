@@ -120,7 +120,10 @@ class Cron
       lis.each do |l|
         station = Station.new
         station.raw = l.text
-        station.name = l.css("a").text
+        name = l.css("a").text
+        name.gsub!(/駅$/, "")
+        name.gsub!(/駅 \(/, " (")
+        station.name = name
         station.save
       end
 
@@ -129,7 +132,10 @@ class Cron
         unless l.text == "アカウント作成" || l.text == "ログイン" || l.text == "ページ" || l.text == "ノート" || l.text == "閲覧" || l.text == "編集" || l.text == "履歴表示" 
           station = Station.new
           station.raw = l.text
-          station.name = l.css("a").text
+          name = l.css("a").text
+          name.gsub!(/駅$/, "")
+          name.gsub!(/駅 \(/, " (")
+          station.name = name
           station.save
         end
       end
@@ -144,7 +150,6 @@ class Cron
         hiragana = b.split("・")[0]
       end
       hiragana.gsub!(/えき$/, "")
-      hiragana.gsub!(/駅$/, "")
       s.hiragana = hiragana
       s.save
     end

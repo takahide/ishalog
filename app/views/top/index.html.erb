@@ -1,47 +1,48 @@
-<div class="panel-overlay"></div>
-
-<!-- Left Panel with Reveal effect -->
-<div class="panel panel-left panel-reveal">
-  <div class="list-block">
-    <ul class="menu">
-    </ul>
-  </div>
-</div>
-
-<div class="views">
-  <div class="view view-main" style="background: #fff;">
-    <div class="navbar">
-      <div class="navbar-inner">
-        <div class="left open-panel">
-          <p class="link open-panel">　</p>
-        </div>
-
-        <div class="center sliding logo"><%= image_tag "ishalan.png", width: "160" %></div>
-        <div class="right sliding">
-        </div>
-      </div>
-    </div>
-    <div class="page-content">
-      <div class="content-block">
-        <form action="search" method="get">
-          <div>
-            <label>駅:</label><input class="station" name="s">
-            <div class="suggest">
+<%= header %>
+<div class="content-block">
+  <form action="search" method="get">
+    <div class="list-block">
+      <ul>
+        <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">駅名</div>
+            <div class="item-input">
+              <input type="text" placeholder="例) 渋谷" class="station" name="s" autocomplete="off">
             </div>
           </div>
-          <div>
-          <label>科目:</label><input class="department" name="d">
+        </div>
+        </li>
+        <div class="suggest"></div>
+        <li>
+        <div class="item-content">
+          <div class="item-inner">
+            <div class="item-title label">科目</div>
+            <div class="item-input">
+              <select class="department" name="d">
+                <option>内科</option>
+                <option>歯科</option>
+                <option>眼科</option>
+                <option>耳鼻科</option>
+                <option>皮膚科</option>
+                <option>外科</option>
+                <option>整形外科</option>
+                <option>泌尿器科</option>
+                <option>小児科</option>
+                <option>産婦人科</option>
+                <option>精神科</option>
+                <option>総合病院</option>
+              </select>
+            </div>
           </div>
-          <input type="submit" value="検索">
-        </form>
-      </div>
-      <div class="footer">
-        <p>2015 ISHALAN All Rights Reserved</p>
-        <a href="/kiyaku.txt">　利用規約</a>
-        <a href="/contact">　お問い合わせ</a>
-        <a href="/aboutus">　運営団体　</a>
-      </div>
+        </div>
+        </li>
+      </ul>
+      <input class="search" type="submit" value="検索">
     </div>
+  </form>
+  <div class="seo">
+    <%= link_to "駅名から探す", :stations_top %>
   </div>
 </div>
-
+<%= footer %>

@@ -1,0 +1,18 @@
+<%= header %>
+<div class="content-block">
+  <div class="content-block-title">頭文字から検索</div>
+  <div class="list-block">
+    <ul>
+      <% @hiraganas.each do |h| %>
+        <a class="station-name" href="/stations?first=<%= h %>">
+        <li class="item-content">
+        <div class="item-inner">
+          <div class="item-title"><%= h %></div>
+        </div>
+        </li>
+      </a>
+    <% end%>
+    </ul>
+  </div>
+</div>
+<%= footer %>

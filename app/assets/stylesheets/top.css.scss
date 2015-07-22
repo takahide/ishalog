@@ -1,7 +1,41 @@
-.pagination .page {
-  position: relative;
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  span {
+    padding: 5px;
+    position: relative;
+    background: #fff;
+  }
+  a {
+    color: rgb(162, 0, 0);
+  }
 }
 
+.station-name {
+  color: #333;
+  padding: 1px;
+  li {
+    border: solid 1px #999;
+  }
+}
+
+form {
+  .search {
+    -webkit-appearance: none;
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: rgb(162, 0, 0);
+    color: #fff;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .suggest-option {
+    cursor: pointer;
+    padding-left: 15px;
+  }
+}
 
 .circle-button-area {
   z-index: 10000;
@@ -114,10 +148,16 @@
     color: #888;
   }
   a {
-    color: rgb(209, 0, 32);
+    color: rgb(162, 0, 0);
   }
 }
 
+.seo {
+  text-align: center;
+  a {
+    color: rgb(162, 0, 0);
+  }
+}
 
 
 // framework7のcssを上書き
