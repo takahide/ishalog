@@ -13,7 +13,7 @@ class TopController < ApplicationController
     if pf.present?
       prefectures = Prefecture.all
       prefectures.any? do |p|
-        if prefecture.include? p.name
+        if pf.include? p.name
           prefecture = p.name
         end
       end
