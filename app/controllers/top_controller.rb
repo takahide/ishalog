@@ -5,7 +5,10 @@ class TopController < ApplicationController
   end
 
   def search 
-    station = params[:s]
+    s = params[:s].split("(")
+    station = s[0].strip
+    prefecture = s[1].strip if s[1].present?
+
     department = params[:d]
     department = "耳鼻いんこう科" if department == "耳鼻科"
     if params[:s].blank?
