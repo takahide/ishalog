@@ -10,7 +10,7 @@ class Cron
       departments = c.department.split(",")
       departments.each do |d|
         department = Department.find_by(name: d)
-        canons.push department.canon
+        canons.push department.canon if department.present?
       end
       canons.uniq!
       c.canon = canons.join(",")
