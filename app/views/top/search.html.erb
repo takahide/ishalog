@@ -6,7 +6,7 @@
       <ul>
         <% @clinics.each do |c| %>
           <li>
-        <a href="<%= c.url %>" target="_blank" class="item-link item-content">
+        <a href="/clinic?id=<%= c.id %>" class="item-link item-content">
           <div class="item-media">
           </div>
           <div class="item-inner">

@@ -3,8 +3,22 @@ require 'open-uri'
 require 'openssl'
 require 'kconv'
 
-
 class Cron
+  def self.canonicalize_departments
+    Clinic.find_each do |c|
+      canons = []
+      departments = c.department.split(",")
+      departments.each do |d|
+        department = Department.find_by(name: d)
+        canons.push department.canon
+      end
+      canons.uniq!
+      c.canon = canons.to_s
+      c.save
+    end
+
+  end
+
   def self.get_hospital_pages
     Prefecture.find_each do |pref|
       prefecture = pref.url

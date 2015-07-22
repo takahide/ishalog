@@ -85,6 +85,11 @@ class TopController < ApplicationController
 
   end
 
+  def clinic
+    id = params[:id]
+    @clinic = Clinic.find id
+  end
+
   def login
 
   end

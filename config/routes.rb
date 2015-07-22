@@ -11,6 +11,8 @@ Ishalog::Application.routes.draw do
   get '/aboutus', to: 'top#aboutus'
   get '/search', to: 'top#search'
 
+  get '/clinic', to: 'top#clinic'
+
   get '/stations/suggest', to: 'station#suggest'
   get '/stations', to: 'station#show', as: 'stations_top'
 
