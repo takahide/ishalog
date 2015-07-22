@@ -2,6 +2,11 @@ require "open-uri"
 
 class TopController < ApplicationController
   def index
+    File.open("public/canon_departments.txt", "r") do |file|
+      file.each do |line|
+        @departments = line.split(",")
+      end
+    end
   end
 
   def search 

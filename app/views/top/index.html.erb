@@ -20,18 +20,9 @@
             <div class="item-title label">科目</div>
             <div class="item-input">
               <select class="department" name="d">
-                <option>内科</option>
-                <option>歯科</option>
-                <option>眼科</option>
-                <option>耳鼻科</option>
-                <option>皮膚科</option>
-                <option>外科</option>
-                <option>整形外科</option>
-                <option>泌尿器科</option>
-                <option>小児科</option>
-                <option>産婦人科</option>
-                <option>精神科</option>
-                <option>総合病院</option>
+                <% @departments.each do |d| %>
+                  <option><%= d %></option>
+                <% end %>
               </select>
             </div>
           </div>

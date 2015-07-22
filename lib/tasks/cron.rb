@@ -13,10 +13,18 @@ class Cron
         canons.push department.canon
       end
       canons.uniq!
-      c.canon = canons.to_s
+      c.canon = canons.join(",")
       c.save
     end
 
+    candidates = []
+    Department.find_each do |d|
+      candidates.push d.canon
+    end
+    candidates.uniq!
+    File.open("public/canon_departments.txt", "w") do |file|
+      file.puts candidates.join(",")
+    end
   end
 
   def self.get_hospital_pages
