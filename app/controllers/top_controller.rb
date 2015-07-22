@@ -45,6 +45,11 @@ class TopController < ApplicationController
   end
 
   def recommendations
+    File.open("public/canon_departments.txt", "r") do |file|
+      file.each do |line|
+        @departments = line.split(",")
+      end
+    end
     if current_user.present?
       token = current_user.token
       uid = current_user.uid
