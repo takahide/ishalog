@@ -4,6 +4,7 @@ require 'openssl'
 require 'kconv'
 
 class Cron
+
   def self.canonicalize_departments
     Clinic.find_each do |c|
       canons = []

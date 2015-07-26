@@ -1,3 +1,9 @@
+<script src="http://maps.google.com/maps/api/js?v=3&sensor=false" charset="UTF-8"></script>
+<script>
+$(document).ready(function(){
+  googlemap_init('google_map', '東京都千代田区丸の内1丁目7-12');
+});
+</script>
 <%= header %>
 <div class="content-block">
   <div class="rec-block">
@@ -7,6 +13,8 @@
     <p><%= @clinic.address %></p>
     <p><%= @clinic.tel %></p>
     <p><%= @clinic.url %></p>
+    <div id="google_map" style="width: 600px; height: 600px"></div>
   </div>
+  <%= search @close_clinics %>
 </div>
 <%= footer %>

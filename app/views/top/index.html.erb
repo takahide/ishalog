@@ -1,39 +1,74 @@
 <%= header %>
-<div class="content-block">
-  <form action="search" method="get">
-    <div class="list-block">
-      <ul>
-        <li>
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="item-title label">駅名</div>
-            <div class="item-input">
-              <input type="text" placeholder="例) 渋谷" class="station" name="s" autocomplete="off">
-            </div>
+<div class="content-block top-content-block">
+  <div class="top-back">
+    <div class="top-box">
+      <div class="fb-area">
+        <p class="big">ISHALAN（イシャラン）は友達の口コミで探せる、病院検索サービスです</p>
+        <form class="search-box" action="search" method="get">
+          <div class="list-block">
+            <ul>
+              <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">駅名</div>
+                  <div class="item-input">
+                    <input type="text" placeholder="例) 渋谷" class="station" name="s" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+              </li>
+              <div class="suggest"></div>
+              <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">科目</div>
+                  <div class="item-input">
+                    <select class="department" name="d">
+                      <% @departments.each do |d| %>
+                        <option><%= d %></option>
+                    <% end %>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </li>
+            </ul>
+            <input class="search" type="submit" value="検索">
           </div>
-        </div>
-        </li>
-        <div class="suggest"></div>
-        <li>
-        <div class="item-content">
-          <div class="item-inner">
-            <div class="item-title label">科目</div>
-            <div class="item-input">
-              <select class="department" name="d">
-                <% @departments.each do |d| %>
-                  <option><%= d %></option>
-                <% end %>
-              </select>
-            </div>
-          </div>
-        </div>
-        </li>
-      </ul>
-      <input class="search" type="submit" value="検索">
+        </form>
+        <a href="/users/auth/facebook"><p class="fb-button">Facebookログイン</p></a>
+        <p>※これは、アプリにFacebookでの投稿を許可するものではありませんので、無断でFacebookに投稿されることはありません。</p>
+      </div>
     </div>
-  </form>
-  <div class="seo">
-    <%= link_to "駅名から探す", :stations_top %>
+  </div>
+  <div class="how-to">
+    <div class="step">
+      <p class="title">急な病気でどこの病院へいったらいいのかわからない！</p>
+      <div class="how-to-img">
+        <%= image_tag "top1.png" %>
+      </div>
+      <p>ISHALANならFacebookの友達がオススメする病院を簡単に検索することができます。</p>
+    </div>
+    <div class="step">
+      <p class="title">近所にどんな病院があるのか知っておきたい！</p>
+      <div class="how-to-img">
+        <%= image_tag "top2.png" %>
+      </div>
+      <p>ISHALANは最寄り駅で検索できるので、会社の近くや家の周辺など、場所で病院を探すことができます。</p>
+    </div>
+    <div class="step">
+      <p class="title">検索してもどうやって見たらいいのかわからない！</p>
+      <div class="how-to-img">
+        <%= image_tag "top3.png" %>
+      </div>
+      <p>ISHALANはスマートフォンで使うためのサービスです。お手持ちのスマートフォンから簡単に検索することができます。</p>
+    </div>
   </div>
 </div>
+
+<div class="seo">
+  <%= link_to "駅名から探す", :stations_top %>
+</div>
+
+
 <%= footer %>

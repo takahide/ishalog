@@ -1,3 +1,5 @@
+@import "colors";
+
 .pagination {
   margin-top: 20px;
   text-align: center;
@@ -7,7 +9,7 @@
     background: #fff;
   }
   a {
-    color: rgb(162, 0, 0);
+    color: $ishalan;
   }
 }
 
@@ -19,23 +21,6 @@
   }
 }
 
-form {
-  .search {
-    -webkit-appearance: none;
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    background: rgb(162, 0, 0);
-    color: #fff;
-    border-style: none;
-    cursor: pointer;
-    border-radius: 10px;
-  }
-  .suggest-option {
-    cursor: pointer;
-    padding-left: 15px;
-  }
-}
 
 .circle-button-area {
   z-index: 10000;
@@ -49,7 +34,7 @@ form {
     width: 50px;
     height: 50px;
     border-radius: 25px;
-    background: rgb(162, 0, 0);
+    background: $ishalan;
     color: #fff;
     font-size: 225%;
     text-align: center;
@@ -68,13 +53,14 @@ form {
 }
 
 .logo-back {
-  background: rgb(162, 0, 0);
+  background: $ishalan;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 6px;
 }
 
 .top-back {
+  margin-top: 70px;
   padding: 20px;
   background-image: image-url("top.jpg");
   background-size: cover;
@@ -84,6 +70,35 @@ form {
     background: rgba(0, 0, 0, .25);
     color: #fff;
     padding: 30px;
+    .search-box {
+      color: #333;
+      position: relative;
+      ul {
+      background: rgba(255, 255, 255, .85);
+      }
+      .search {
+        -webkit-appearance: none;
+        margin-top: 20px;
+        width: 100%;
+        padding: 10px;
+        font-size: 110%;
+        background: $ishalan;
+        color: #fff;
+        border-style: none;
+        cursor: pointer;
+        border-radius: 10px;
+      }
+      .suggest {
+        position: absolute;
+        z-index: 999;
+        width: 100%;
+        background: #fff;
+        .suggest-option {
+          cursor: pointer;
+          padding-left: 15px;
+        }
+      }
+    }
     .fb-area {
       width: 100%;
       margin: 0 auto;
@@ -113,7 +128,7 @@ form {
     padding-bottom: 30px;
     &.title {
       margin-top: 30px;
-      color: rgb(162, 0, 0);
+      color: $ishalan;
       font-size: 130%;
       font-weight: bold;
       line-height: 120%;
@@ -148,14 +163,14 @@ form {
     color: #888;
   }
   a {
-    color: rgb(162, 0, 0);
+    color: $ishalan;
   }
 }
 
 .seo {
   text-align: center;
   a {
-    color: rgb(162, 0, 0);
+    color: $ishalan;
   }
 }
 

@@ -20,5 +20,4 @@ class StationController < ApplicationController
     end
     render json: stations
   end
-
 end

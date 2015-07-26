@@ -11,6 +11,12 @@ $(document).on "keyup", "input.station", ->
         $(".suggest").html(html)
     }
 
+$(document).on "blur", "input.station", ->
+  setTimeout ->
+    $(".suggest").html("")
+  , 200
+
+
 $(document).on "focus", "input.department", ->
   $(".suggest").html("")
 

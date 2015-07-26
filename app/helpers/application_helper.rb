@@ -6,4 +6,9 @@ module ApplicationHelper
   def footer
     render "shared/footer"
   end
+
+  def search results
+    @results = results
+    render "shared/search"
+  end
 end
