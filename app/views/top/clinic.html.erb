@@ -7,16 +7,24 @@ $(document).ready(function(){
 <%= header %>
 <div class="content-block">
   <div class="rec-block">
-    
-    
-    <p><%= image_tag "top1.png", size: "30x30" %><%= @clinic.name %></p>
-    <p><%= @clinic.station %></p>
+    <h2><%= @clinic.name %></h2>
     <p><%= @clinic.canon %></p>
-    <p><%= image_tag "top2.png", size: "30x30" %><%= @clinic.address %></p>
-    <a href="tel:<%= @clinic.tel %>"><%= @clinic.tel %></a>
-    <p><%= @clinic.url %></p>
+    <p>最寄駅: <%= @clinic.station %></p>
+    <p><%= @clinic.address %></p>
     <div id="google_map" style="width: 100%; height: 200px"></div>
+    <% if @clinic.tel.present? %>
+      <p>電話番号: <%= @clinic.tel %></p>
+      <a href="tel:<%= @clinic.tel %>"><p class="clinic-button">電話する</p></a>
+    <% end %>
+    <% if @clinic.url.present? %>
+      <p>Webサイト: <%= @clinic.url %></p>
+      <a href="<%= @clinic.url %>"><p class="clinic-button">サイトを見る</p></a>
+    <% end %>
   </div>
-  <%= search @close_clinics %>
+
+  <% if @close_clinics.present? %>
+    <h3><%= @clinic.name %>の周辺の<%= @clinic.canon.split(",")[0] %></h3>
+    <%= search @close_clinics %>
+  <% end %>
 </div>
 <%= footer %>

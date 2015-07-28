@@ -1,0 +1,31 @@
+<% @hiraganas.each do |h| %>
+  <a href="/admin/stations?h=<%= h %>"><%= h %></a>
+<% end %>
+<table>
+<% @stations.each do |s| %>
+  <tr>
+    <td><%= s.name %></td>
+    <td><input id="<%= s.id %>" value="<%= s.close_stations %>"></td>
+    <td id="status<%= s.id %>"><%= s.close_stations %></td>
+  </tr>
+<% end %>
+</table>
+<script>
+$("input").blur(function() {
+    var id = $(this).attr("id");
+    if ($(this).val() == "") {
+      if ($("status" + id).text == "") {
+        return;
+      }
+    }
+    $("#status" + id).html("<span style='color: orange;'>更新中...</span>")
+    var url = "/admin/stations/update?id=" + id + "&close_stations=" + $(this).val();
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function(data, dataType){
+          $("#status" + data.id).html("<span style='color: green;'>更新完了</span>");
+        }
+    });
+});
+</script>

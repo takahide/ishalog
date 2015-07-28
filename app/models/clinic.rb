@@ -18,9 +18,10 @@
 class Clinic < ActiveRecord::Base
   def close_clinics
     station = self.station
+    id = self.id
     main_department = self.department.split(",")[0]
     prefecture = self.address[0..1]
 
-    Clinic.where(station: station).where("department LIKE ?", "%#{main_department}%").where("address LIKE ?", "#{prefecture}%")
+    Clinic.where(station: station).where("address LIKE ?", "#{prefecture}%").where("department LIKE ?", "%#{main_department}%").where("id != ?", id)
   end
 end

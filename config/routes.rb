@@ -18,6 +18,8 @@ Ishalog::Application.routes.draw do
 
   get '/admin', to: 'admin#recommendations'
   get '/admin/departments', to: 'admin#departments'
+  get '/admin/stations', to: 'admin#stations'
+  get '/admin/stations/update', to: 'admin#edit_stations'
   get '/admin/departments/update', to: 'admin#edit_departments'
 
 
