@@ -1,7 +1,7 @@
 <%= header %>
 <div class="content-block">
   <div class="rec-block">
-    <div class="content-block-title"><%= @title %></div>
+    <div class="result-title content-block-title"><%= @title %> <a class="back-to-top" href="<%= @top_link %>">検索条件を変更</a></div>
     <%= search @clinics %>
   </div>
 </div>

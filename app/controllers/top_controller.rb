@@ -2,6 +2,9 @@ require "open-uri"
 
 class TopController < ApplicationController
   def index
+    @s = params[:s]
+    @d = params[:d]
+
     File.open("public/canon_departments.txt", "r") do |file|
       file.each do |line|
         @departments = line.split(",")
@@ -10,6 +13,7 @@ class TopController < ApplicationController
   end
 
   def search 
+    @top_link = "/?s=#{params[:s]}&d=#{params[:d]}"
     s = params[:s].split("(")
     station = s[0].strip if s[0].present?
     pf = s[1].strip if s[1].present?

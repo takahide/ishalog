@@ -7,11 +7,13 @@ $(document).ready(function(){
 <%= header %>
 <div class="content-block">
   <div class="rec-block">
-    <p><%= @clinic.name %></p>
+    
+    
+    <p><%= image_tag "top1.png", size: "30x30" %><%= @clinic.name %></p>
     <p><%= @clinic.station %></p>
     <p><%= @clinic.canon %></p>
-    <p><%= @clinic.address %></p>
-    <p><%= @clinic.tel %></p>
+    <p><%= image_tag "top2.png", size: "30x30" %><%= @clinic.address %></p>
+    <a href="tel:<%= @clinic.tel %>"><%= @clinic.tel %></a>
     <p><%= @clinic.url %></p>
     <div id="google_map" style="width: 600px; height: 600px"></div>
   </div>

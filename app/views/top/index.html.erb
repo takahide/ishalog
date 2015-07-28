@@ -12,7 +12,7 @@
                 <div class="item-inner">
                   <div class="item-title label">駅名</div>
                   <div class="item-input">
-                    <input type="text" placeholder="例) 渋谷" class="station" name="s" autocomplete="off">
+                    <input type="text" placeholder="例) 渋谷" class="station" name="s" autocomplete="off" value="<%= @s %>">
                   </div>
                 </div>
               </div>
@@ -25,7 +25,11 @@
                   <div class="item-input">
                     <select class="department" name="d">
                       <% @departments.each do |d| %>
-                        <option><%= d %></option>
+                        <% if @d == d %>
+                          <option selected><%= d %></option>
+                        <% else %>
+                          <option><%= d %></option>
+                        <% end %>
                     <% end %>
                     </select>
                   </div>
