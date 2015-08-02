@@ -48,8 +48,8 @@ class TopController < ApplicationController
     if c.present?
       c.split(",").each do |s|
         s.strip!
-        staion = "#{s}駅" if s[-1] != "駅"
-        @close_station_clinics.push  Clinic.where(station: station).where("department LIKE ?", "%#{department}%").where("address LIKE ?", "#{prefecture}%") if @close_station_clinics.present?
+        s = "#{s}駅" if s[-1] != "駅"
+        @close_station_clinics.push  Clinic.where(station: s).where("department LIKE ?", "%#{department}%")
       end
     end
   end

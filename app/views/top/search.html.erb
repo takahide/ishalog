@@ -2,8 +2,11 @@
 <div class="content-block">
   <div class="rec-block">
     <div class="result-title content-block-title"><%= @title %> <a class="back-to-top" href="<%= @top_link %>">検索条件を変更</a></div>
+    <%= @hoge %>
     <%= search @clinics %>
-    <%= search @close_station_clinics %>
+    <% @close_station_clinics.each do |clinics| %>
+      <%= search clinics %>
+    <% end %>
   </div>
 </div>
 <%= footer %>

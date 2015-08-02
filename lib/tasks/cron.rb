@@ -4,6 +4,14 @@ require 'openssl'
 require 'kconv'
 
 class Cron
+  def self.add_clinics
+    c = Clinic.new
+    c.name = "テスト歯科"
+    c.department = "内科"
+    c.station = "新宿駅"
+    c.address = "東京都新宿区"
+    c.save
+  end
 
   def self.canonicalize_departments
     Clinic.find_each do |c|
