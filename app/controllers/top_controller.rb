@@ -42,6 +42,16 @@ class TopController < ApplicationController
     else
       @title = "病院一覧"
     end
+
+    c = Station.find_by(name: params[:s]).close_stations
+    @close_station_clinics = []
+    if c.present?
+      c.split(",").each do |s|
+        s.strip!
+        staion = "#{s}駅" if s[-1] != "駅"
+        @close_station_clinics.push  Clinic.where(station: station).where("department LIKE ?", "%#{department}%").where("address LIKE ?", "#{prefecture}%") if @close_station_clinics.present?
+      end
+    end
   end
 
   def recommendations

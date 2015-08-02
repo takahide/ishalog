@@ -14,7 +14,7 @@
 $("input").blur(function() {
     var id = $(this).attr("id");
     if ($(this).val() == "") {
-      if ($("status" + id).text == "") {
+      if ($("#status" + id).text() == "") {
         return;
       }
     }
