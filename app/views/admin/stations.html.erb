@@ -1,30 +1,50 @@
-<% @hiraganas.each do |h| %>
-  <a href="/admin/stations?h=<%= h %>"><%= h %></a>
-<% end %>
+使い方:<br>
+1. 入力したい駅名検索をする。<br>
+2. 近くにある駅名を入力。複数ある場合は半角コンマ区切りで入力。（半角コンマの前後のスペースは無視されます）<br>
+例) 御徒町: 上野広小路, 仲御徒町, 新御徒町<br>
+3. 更新ボタンを押せば、更新される。<br><br>
+
+
+<form action="/admin/stations" method="get">
+  駅名検索
+  <input name="q">
+  <input type="submit" value="送信">
+</form>
+<p>検索結果</p>
 <table>
 <% @stations.each do |s| %>
+  <tr style="background: #ddd;">
+    <td>駅名</td>
+    <td>入力フォーム</td>
+    <td>ボタン</td>
+    <td>現在の値</td>
+  </tr>
   <tr>
-    <td><%= s.name %></td>
+    <td><%= s.name %>: </td>
     <td><input id="<%= s.id %>" value="<%= s.close_stations %>"></td>
+    <td><button class="btn" data-id="<%= s.id %>">更新</button></td>
     <td id="status<%= s.id %>"><%= s.close_stations %></td>
   </tr>
 <% end %>
 </table>
 <script>
-$("input").blur(function() {
-    var id = $(this).attr("id");
-    if ($(this).val() == "") {
+$(".btn").click(function() {
+    var id = $(this).attr("data-id");
+    if ($("#" + id).val() == "") {
       if ($("#status" + id).text() == "") {
         return;
       }
     }
     $("#status" + id).html("<span style='color: orange;'>更新中...</span>")
-    var url = "/admin/stations/update?id=" + id + "&close_stations=" + $(this).val();
+    var url = "/admin/stations/update?id=" + id + "&close_stations=" + $("#" + id).val();
     $.ajax({
         type: "GET",
         url: url,
         success: function(data, dataType){
           $("#status" + data.id).html("<span style='color: green;'>更新完了</span>");
+          setInterval(function() {
+            $("#status" + data.id).html("<span>" + data.close_stations + "</span>");
+          }, 500);
         }
     });
 });

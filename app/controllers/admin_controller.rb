@@ -13,10 +13,9 @@ class AdminController < ApplicationController
   end
 
   def stations
-    @hiraganas = %w(あ い う え お か き く け こ さ し す せ そ た ち つ て と な に ぬ ね の は ひ ふ へ ほ ま み む め も や ゆ よ ら り る れ ろ わ)
     @stations = []
-    if params[:h].present?
-      @stations = Station.where("hiragana like ? or name like ?", "#{params[:h]}%", "#{params[:h]}%")
+    if params[:q].present?
+      @stations = Station.where("hiragana like ? or name like ?", "#{params[:q]}%", "#{params[:q]}%")
     end
     render layout: "admin"
   end
