@@ -42,7 +42,7 @@ $(".btn").click(function() {
         url: url,
         success: function(data, dataType){
           $("#status" + data.id).html("<span style='color: green;'>更新完了</span>");
-          setInterval(function() {
+          setTimeout(function() {
             $("#status" + data.id).html("<span>" + data.close_stations + "</span>");
           }, 500);
         }
