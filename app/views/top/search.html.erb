@@ -1,8 +1,25 @@
 <%= header %>
 <div class="content-block">
   <div class="rec-block">
-    <div class="result-title content-block-title"><%= @title %> <a class="back-to-top" href="<%= @top_link %>">検索条件を変更</a></div>
-    <%= @hoge %>
+    <div class="result-title content-block-title"><%= @title %>
+      <% if @departments.present? %>
+        <div class="list-block">
+          <ul>
+            <% @departments.each do |d| %>
+              <a class="station-name" href="/search?s=<%= @params_s %>&d=<%= d %>">
+              <li class="item-content">
+              <div class="item-inner">
+                <div class="item-title"><%= d %></div>
+              </div>
+              </li>
+              </a>
+            <% end%>
+          </ul>
+        </div>
+      <% else %>
+        <a class="back-to-top" href="<%= @top_link %>">検索条件を変更</a>
+      <% end %>
+    </div>
     <%= search @clinics %>
     <% @close_station_clinics.each do |clinics| %>
       <%= search clinics %>

@@ -14,6 +14,7 @@ class TopController < ApplicationController
 
   def search 
     @top_link = "/?s=#{params[:s]}&d=#{params[:d]}"
+    @params_s = params[:s]
     s = params[:s].split("(")
     station = s[0].strip if s[0].present?
     pf = s[1].strip if s[1].present?
@@ -37,6 +38,11 @@ class TopController < ApplicationController
       @title = "#{station}の#{department}一覧"
     elsif station.present?
       @title = "#{station}の病院一覧"
+      File.open("public/canon_departments.txt", "r") do |file|
+        file.each do |line|
+          @departments = line.split(",")
+        end
+      end
     elsif department.present?
       @title = "#{department}一覧"
     else
