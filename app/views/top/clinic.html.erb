@@ -7,7 +7,7 @@ $(document).ready(function(){
 </script>
 <%= header %>
 <div class="content-block">
-  <div class="rec-block">
+  <div class="left-rail">
     <h2><%= @clinic.name %></h2>
     <p><%= @clinic.canon %></p>
     <p>最寄駅: <%= @clinic.station %></p>
@@ -23,9 +23,11 @@ $(document).ready(function(){
     <% end %>
   </div>
 
-  <% if @close_clinics.present? %>
-    <h3><%= @clinic.name %>の周辺の<%= @clinic.canon.split(",")[0] %></h3>
-    <%= search @close_clinics %>
-  <% end %>
+  <div class="right-rail">
+    <% if @close_clinics.present? %>
+      <h3><%= @clinic.name %>の周辺の<%= @clinic.canon.split(",")[0] %></h3>
+      <%= search @close_clinics %>
+    <% end %>
+  </div>
 </div>
 <%= footer %>

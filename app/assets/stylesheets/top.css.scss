@@ -230,3 +230,15 @@ h3 {
     }
   }
 }
+
+
+@media only screen and (min-width: 900px) {
+  .left-rail {
+    width: 45%;
+    float: left;
+  }
+  .right-rail {
+    width: 45%;
+    float: right;
+  }
+}
