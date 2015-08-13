@@ -31,8 +31,11 @@ class Cron
       candidates.push d.canon
     end
     candidates.uniq!
-    File.open("public/canon_departments.txt", "w") do |file|
-      file.puts candidates.join(",")
+
+    candidates.each do |cand|
+      cd = CanonDepartment.new
+      cd.name = cand
+      cd.save
     end
   end
 

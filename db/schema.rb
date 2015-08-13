@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728144104) do
+ActiveRecord::Schema.define(version: 20150813173437) do
+
+  create_table "canon_departments", force: true do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clinics", force: true do |t|
     t.string   "name"

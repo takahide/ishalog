@@ -5,11 +5,7 @@ class TopController < ApplicationController
     @s = params[:s]
     @d = params[:d]
 
-    File.open("public/canon_departments.txt", "r") do |file|
-      file.each do |line|
-        @departments = line.split(",")
-      end
-    end
+    @departments = CanonDepartment.order(:priority)
   end
 
   def search 

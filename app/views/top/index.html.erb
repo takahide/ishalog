@@ -25,10 +25,10 @@
                   <div class="item-input">
                     <select class="department" name="d">
                       <% @departments.each do |d| %>
-                        <% if @d == d %>
-                          <option selected><%= d %></option>
+                        <% if @d == d.name %>
+                          <option selected><%= d.name %></option>
                         <% else %>
-                          <option><%= d %></option>
+                          <option><%= d.name %></option>
                         <% end %>
                     <% end %>
                     </select>
