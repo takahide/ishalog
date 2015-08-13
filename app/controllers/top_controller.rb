@@ -5,7 +5,7 @@ class TopController < ApplicationController
     @s = params[:s]
     @d = params[:d]
 
-    @departments = CanonDepartment.order(:priority)
+    @departments = CanonDepartment.order("priority DESC")
   end
 
   def search 
