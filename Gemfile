@@ -8,6 +8,7 @@ gem 'annotate'
 gem 'nokogiri', '1.6.1'
 gem 'whenever', require: false
 gem 'kaminari'
+gem 'meta-tags'
 
 group :development, :test do
   gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
