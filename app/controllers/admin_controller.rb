@@ -13,6 +13,7 @@ class AdminController < ApplicationController
   end
 
   def stations
+    @dones = Station.where("close_stations is not null")
     @stations = []
     if params[:q].present?
       @stations = Station.where("hiragana like ? or name like ?", "#{params[:q]}%", "#{params[:q]}%")

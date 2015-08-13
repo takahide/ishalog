@@ -5,6 +5,12 @@
 3. 更新ボタンを押せば、更新される。<br><br>
 
 
+すでに入力した駅:
+<% @dones.each do |d| %>
+  <span><%= d.name %>,</span>
+<% end %>
+
+<div>
 <form action="/admin/stations" method="get">
   駅名検索
   <input name="q">
@@ -27,6 +33,7 @@
   </tr>
 <% end %>
 </table>
+</div>
 <script>
 $(".btn").click(function() {
     var id = $(this).attr("data-id");
