@@ -1,7 +1,6 @@
 // Initialize your app
 var myApp = new Framework7({
     ajaxLinks: "a.ajax",
-    swipePanel: 'left'
 });
 
 // Export selectors engine
