@@ -1,5 +1,17 @@
 @import "colors";
 
+.distance {
+  text-align: center;
+  color: #fff;
+  background: $ishalan;
+  border-radius: 5px;
+  margin: 0;
+  padding: 10px;
+  .small {
+    font-size: 80%;
+  }
+}
+
 .pagination {
   margin-top: 20px;
   text-align: center;

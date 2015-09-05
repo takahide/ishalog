@@ -5,6 +5,23 @@ require 'kconv'
 
 class Cron
 
+  def self.calculate_distance
+    Clinic.find_each do |c|
+      distance = c.distance
+      if distance.present?
+        d_int = distance.delete("約").delete("m").delete("ｍ").to_i
+        c.d_minute = (d_int - (d_int % 80)) / 80 + 1
+        reminder = d_int % 50
+        additional = 0
+        if reminder > 25
+          additional= 50
+        end
+        c.d_meter = (d_int - reminder) + additional
+        c.save
+      end
+    end
+  end
+
   def self.retrieve_departments
     Clinic.find_each do |c|
       departments = c.department.split(",")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813173437) do
+ActiveRecord::Schema.define(version: 20150905154615) do
 
   create_table "canon_departments", force: true do |t|
     t.string   "name"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20150813173437) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "canon"
+    t.integer  "d_meter"
+    t.integer  "d_minute"
   end
 
   create_table "contacts", force: true do |t|

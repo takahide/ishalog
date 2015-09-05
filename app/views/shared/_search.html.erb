@@ -4,6 +4,9 @@
       <li>
     <a href="/clinic?id=<%= c.id %>" class="item-link item-content">
       <div class="item-media">
+        <% if c.d_meter.present? %>
+          <p class="distance"><span class="small"><%= c.station %>から</span><br><span class="big">約<%= c.d_meter %>m</span><br><span class="small">徒歩<%= c.d_minute %>分</span></p>
+        <% end %>
       </div>
       <div class="item-inner">
         <div class="item-title-row">
