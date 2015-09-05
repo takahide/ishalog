@@ -4,13 +4,14 @@ require 'openssl'
 require 'kconv'
 
 class Cron
-  def self.add_clinics
-    c = Clinic.new
-    c.name = "テスト歯科"
-    c.department = "内科"
-    c.station = "新宿駅"
-    c.address = "東京都新宿区"
-    c.save
+
+  def self.retrieve_departments
+    Clinic.find_each do |c|
+      departments = c.department.split(",")
+      departments.each do |d|
+        Department.where(name: d.strip).first_or_create
+      end
+    end
   end
 
   def self.canonicalize_departments
@@ -39,6 +40,48 @@ class Cron
     end
   end
 
+  def self.get_prefectures
+    page = access("http://byoinnavi.jp").to_s
+    html = Nokogiri::HTML(page, nil, 'utf-8')
+    prefectures = html.css(".top_area_prefs_left a") + html.css(".top_area_prefs_right a")
+    prefectures.each do |p|
+      name = p.text.strip
+      url =  p.attr("href").split("/").last
+      pref = Prefecture.new
+      pref.name = name
+      pref.url = url
+      pref.save
+    end
+
+    Prefecture.find_each do |p|
+      page = access("http://byoinnavi.jp/#{p.url}").to_s
+      html = Nokogiri::HTML(page, nil, 'utf-8')
+      all = html.css("#left_main h2 strong.key").first.text.delete(",").delete("件").to_i
+      if all % 15 == 0
+        page_number = ((all - (all % 15)) / 15)
+      else
+        page_number = ((all - (all % 15)) / 15) + 1
+      end
+      p.page_number = page_number
+      p.save
+    end
+  end
+
+  def self.get_tokyo_hospital_pages
+    tokyo = Prefecture.where url: "tokyo"
+    tokyo.each do |pref|
+      prefecture = pref.url
+      max = pref.page_number
+      for page in 1..max
+        p = HospitalPage.new
+        p.prefecture = prefecture
+        p.page = page
+        p.html = access("http://byoinnavi.jp/#{prefecture}?p=#{page}").to_s
+        p.save
+      end
+    end
+  end
+
   def self.get_hospital_pages
     Prefecture.find_each do |pref|
       prefecture = pref.url
@@ -53,34 +96,6 @@ class Cron
     end
   end
 
-  def self.get_prefectures
-    page = access("http://byoinnavi.jp").to_s
-    html = Nokogiri::HTML(page, nil, 'utf-8')
-    prefectures = html.css(".top_area_prefs_left a") + html.css(".top_area_prefs_right a")
-    prefectures.each do |p|
-      name = p.text.strip
-      url =  p.attr("href").split("/").last
-      pref = Prefecture.new
-      pref.name = name
-      pref.url = url
-      pref.save
-    end
-  end
-
-  def self.get_page_numbers
-    Prefecture.find_each do |p|
-      page = access("http://byoinnavi.jp/#{p.url}").to_s
-      html = Nokogiri::HTML(page, nil, 'utf-8')
-      all = html.css("#left_main h2 strong.key").first.text.delete(",").delete("件").to_i
-      if all % 15 == 0
-        page_number = ((all - (all % 15)) / 15)
-      else
-        page_number = ((all - (all % 15)) / 15) + 1
-      end
-      p.page_number = page_number
-      p.save
-    end
-  end
 
   def self.hospital_pages_to_doctors
     HospitalPage.find_each do |p|
@@ -105,7 +120,7 @@ class Cron
     end
   end
 
-  def self.pics
+  def self.fb_pics
     Recommendation.find_each do |r|
       img_url = "https://graph.facebook.com/#{r.uid}/picture"
       file_name = "#{r.uid}.jpg"
@@ -186,15 +201,6 @@ class Cron
       hiragana.gsub!(/えき$/, "")
       s.hiragana = hiragana
       s.save
-    end
-  end
-
-  def self.retrieve_departments
-    Clinic.find_each do |c|
-      departments = c.department.split(",")
-      departments.each do |d|
-        Department.where(name: d.strip).first_or_create
-      end
     end
   end
 

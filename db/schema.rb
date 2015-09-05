@@ -49,17 +49,6 @@ ActiveRecord::Schema.define(version: 20150813173437) do
     t.string   "canon"
   end
 
-  create_table "doctors", force: true do |t|
-    t.string   "name"
-    t.string   "location"
-    t.string   "address"
-    t.string   "tel"
-    t.string   "map"
-    t.string   "hours"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "hospital_pages", force: true do |t|
     t.string   "prefecture"
     t.integer  "page"
