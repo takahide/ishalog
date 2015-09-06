@@ -45,7 +45,8 @@ class TopController < ApplicationController
       @title = "病院一覧"
     end
 
-    c = Station.find_by(name: params[:s]).close_stations
+    st_tmp = Station.find_by(name: @params_s)
+    c = st_tmp.close_stations if st_tmp.present?
     @close_station_clinics = []
     if c.present?
       c.split(",").each do |s|
