@@ -13,6 +13,7 @@ class TopController < ApplicationController
     @params_s = params[:s]
     s = params[:s].split("(")
     station = s[0].strip if s[0].present?
+    @station = station
     pf = s[1].strip if s[1].present?
     prefecture = ""
 
