@@ -7,10 +7,12 @@
     <td>日付</td>
   </tr>
   <% @contacts.each do |c| %> 
+  <tr>
     <td><%= c.name %></td>
     <td><%= c.email %></td>
     <td><%= c.message %></td>
     <td><%= c.created_at %></td>
+  </tr>
   <% end %>
 </table>
 <h3>投稿</h3>
