@@ -27,6 +27,7 @@ $(document).ready(function(){
   </div>
 
   <div class="right-rail">
+    <a href="/search?s=<%= @clinic.station %>&d=<%= @clinic.canon.split(",")[0] %>"><p class="clinic-button"><%= @clinic.station %>の<%= @clinic.canon.split(",")[0] %>を検索する</p></a>
     <% if @close_clinics.present? %>
       <h3><%= @clinic.name %>の周辺の<%= @clinic.canon.split(",")[0] %></h3>
       <%= search @close_clinics %>
