@@ -72,7 +72,10 @@
 
 <div class="seo">
   <%= link_to "駅名から探す", :stations_top %>
+  <h3>最新の記事</h3>
+  <% @recent_posts.each do |p| %>
+    <p><a href="/p/<%= p.id %>"><%= p.title %></a></p>
+  <% end %>
 </div>
-
 
 <%= footer %>

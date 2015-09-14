@@ -6,6 +6,7 @@ class TopController < ApplicationController
     @d = params[:d]
 
     @departments = CanonDepartment.order("priority DESC")
+    @recent_posts = Post.order("updated_at desc")
   end
 
   def search 
@@ -114,6 +115,12 @@ class TopController < ApplicationController
     @clinic = Clinic.find id
     
     @close_clinics = @clinic.close_clinics
+  end
+
+  def post
+    id = params[:id]
+    @post = Post.find id
+    @recent_posts = Post.order("updated_at desc")
   end
 
   def login

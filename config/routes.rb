@@ -25,6 +25,7 @@ Ishalog::Application.routes.draw do
   get '/admin/stations/update', to: 'admin#edit_stations'
   get '/admin/departments/update', to: 'admin#edit_departments'
 
+  get '/p/:id', to: 'top#post'
 
   get '*anything', to: 'errors#routing_error'
 

@@ -1,0 +1,18 @@
+<% set_meta_tags site: "#{@post.title}" %>
+<% set_meta_tags description: "#{@post.body[0..100]}" %>
+
+<%= header %>
+<div class="content-block">
+  <div class="left-rail">
+    <h2><%= @post.title %></h2>
+    <p><%= raw @post.body_with_html %></p>
+  </div>
+
+  <div class="right-rail">
+    <h3>最新の記事</h3>
+    <% @recent_posts.each do |p| %>
+      <p><a href="/p/<%= p.id %>"><%= p.title %></a></p>
+    <% end %>
+  </div>
+</div>
+<%= footer %>
