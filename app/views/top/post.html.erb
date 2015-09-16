@@ -9,6 +9,12 @@
   </div>
 
   <div class="right-rail">
+    <% if @post.introduced_clinics.present? %>
+      <h3>この記事で紹介されている病院</h3>
+    <% end %>
+    <% @post.introduced_clinics.each do |c| %>
+      <p><a href="/clinic?id=<%= c.id %>"><%= c.name %></a></p>
+    <% end %>
     <h3>最新の記事</h3>
     <% @recent_posts.each do |p| %>
       <p><a href="/p/<%= p.id %>"><%= p.title %></a></p>
