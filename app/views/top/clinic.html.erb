@@ -28,6 +28,7 @@ $(document).ready(function(){
       <h3>この病院が紹介されている記事</h3>
       <% @posts.each do |p| %>
         <p><a href="/p/<%= p.id %>"><%= p.title %></a></p>
+        <p class="quote"><%= p.body[0..300] %>...</p>
       <% end %>
     <% end %>
   </div>
