@@ -24,6 +24,12 @@ $(document).ready(function(){
       <p>Webサイト: <%= @clinic.url %></p>
       <a href="<%= @clinic.url %>"><p class="clinic-button">サイトを見る</p></a>
     <% end %>
+    <% if @posts.size > 0 %>
+      <h3>この病院が紹介されている記事</h3>
+      <% @posts.each do |p| %>
+        <p><a href="/p/<%= p.id %>"><%= p.title %></a></p>
+      <% end %>
+    <% end %>
   </div>
 
   <div class="right-rail">

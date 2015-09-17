@@ -115,6 +115,7 @@ class TopController < ApplicationController
     @clinic = Clinic.find id
     
     @close_clinics = @clinic.close_clinics
+    @posts = Post.where("clinics like ?", "%#{id}%")
   end
 
   def post
